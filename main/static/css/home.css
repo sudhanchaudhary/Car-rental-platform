@@ -1,0 +1,263 @@
+/* =========================
+   COLOR PALETTE VARIABLES
+========================= */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --secondary-color: #64748b;
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+
+    --price-bg: #e0f2fe;
+    --price-text: #0369a1;
+}
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+body {
+    background-color: var(--background-main);
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-dark);
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+    background: var(--background-main);
+}
+
+h1 {
+    color: var(--text-dark);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    background-color: var(--white);
+}
+
+.navbar .nav-link {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.navbar .nav-link.active {
+    color: var(--text-dark);
+}
+
+/* =========================
+   VEHICLE CARD
+========================= */
+.vehicle-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: var(--white);
+    border: 1px solid var(--border-light);
+}
+
+.vehicle-card img {
+    border-radius: 12px;
+    height: 350px;
+    object-fit: cover;
+}
+
+/* =========================
+   PRICE TAG
+========================= */
+.price {
+    background: var(--price-bg);
+    color: var(--price-text);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-light {
+    background-color: var(--white);
+    border: 1px solid var(--border-light);
+}
+
+/* =========================
+   TEXT
+========================= */
+.text-muted {
+    color: var(--text-light) !important;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+}
+
+/* =========================
+   CATEGORY SECTION
+========================= */
+.categories {
+    margin-top: 80px;
+    background-color: #dbeafe33; /* soft blue background */
+}
+
+/* Headings */
+.section-subtitle {
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.section-title {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.section-desc {
+    color: var(--text-light);
+    max-width: 600px;
+}
+
+/* Cards */
+.category-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* Icon */
+.category-card .icon {
+    width: 45px;
+    height: 45px;
+    background: var(--background-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+/* Text */
+.category-card h5 {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.category-card p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Badge */
+.badge-custom {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--price-bg);
+    color: var(--price-text);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* =========================
+   OWNER SECTION
+========================= */
+.owner-section {
+    background-color: var(--background-main);
+}
+
+/* Left Image Placeholder */
+.owner-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    background-image: linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+                      linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+                      linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+    background-size: 30px 30px;
+    background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+}
+
+/* Card */
+.owner-card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+}
+
+/* Features */
+.owner-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+/* Icon */
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--background-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+/* Text */
+.feature-item h6 {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.feature-item p {
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .owner-image {
+        height: 200px;
+    }
+}
