@@ -10,6 +10,7 @@
     --text-light: #94a3b8;
 
     --background-main: #f8fafc;
+    --background-secondary:#e8f0fae7;
     --white: #ffffff;
 
     --border-light: #e2e8f0;
@@ -36,6 +37,13 @@ body {
 
 h1 {
     color: var(--text-dark);
+}
+
+a {
+    text-decoration: none;
+}
+ul{
+    list-style: none;
 }
 
 /* =========================
@@ -119,7 +127,7 @@ h1 {
 ========================= */
 .categories {
     margin-top: 80px;
-    background-color: #dbeafe33; /* soft blue background */
+    background-color: var(--background-secondary); /* soft blue background */
 }
 
 /* Headings */
@@ -260,4 +268,239 @@ h1 {
     .owner-image {
         height: 200px;
     }
+}
+
+/* =====================
+feature section
+ ===================== */
+.feature-section {
+    padding-top: 80px;
+    background-color: var(--background-secondary);
+}
+
+.review-desc h5 {
+    font-weight: 300;
+    color: var(--text-dark);
+}
+
+.review-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    height: 200px;
+}
+
+.review-card p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.review-card h5 {
+    font-weight: 400;
+    color: var(--text-dark);
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* Image */
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Top Badge */
+.badge-top {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* Body */
+.card-body {
+    padding: 16px;
+}
+
+/* Title */
+.card-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+/* Subtitle */
+.card-subtitle {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+}
+
+/* Footer */
+.card-footer-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Price */
+.price {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Button */
+.btn-sm {
+    padding: 5px 12px;
+    border-radius: 8px;
+}
+
+/*
+ ======================== 
+    Start section
+ ========================
+  */
+
+  .start{
+    padding: 50px;
+    background-color: var(--background-secondary);
+  }
+/*
+ ======================== 
+    footer section
+ ========================
+  */
+
+  .footer{
+    border-top: 1px solid rgb(195, 210, 246);
+    padding: 40px;
+  }
+  .footer-body p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* =========================
+   FOOTER
+========================= */
+/* =========================
+   FOOTER BRAND SECTION
+========================= */
+.footer-brand {
+    max-width: 420px;
+}
+
+/* Logo */
+.brand {
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--text-dark);
+}
+
+.brand img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+}
+
+/* Highlight part */
+.brand span strong {
+    color: var(--text-dark);
+}
+
+.brand span {
+    color: var(--primary-color);
+}
+
+/* Description */
+.footer-desc {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Hover effect */
+.brand:hover {
+    opacity: 0.85;
+}
+
+.footer-col {
+    margin-bottom: 20px;
+}
+
+/* Title */
+.footer-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    position: relative;
+}
+
+/* Optional underline effect */
+.footer-title::after {
+    content: "";
+    width: 30px;
+    height: 2px;
+    background: var(--primary-color);
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+}
+
+/* List */
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+/* Links */
+.footer-list li {
+    margin-bottom: 8px;
+}
+
+.footer-list a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.footer-list a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
 }

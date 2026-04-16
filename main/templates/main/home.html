@@ -34,7 +34,7 @@
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="{% url 'home' %}"><img
                     src="{% static 'images/logo_round.png' %}" alt="logo" height="35px" width="35px"><span
-                    style="color: #0f172a;">Rental</span>Hub</a>
+                    style="color: #0f172a; margin-left: 5px; "><strong>Rental</strong></span>Hub</a>
 
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
                 <span class="navbar-toggler-icon"></span>
@@ -96,13 +96,12 @@
 
                 <!-- Right -->
                 <div class="col-lg-6">
-{% for i in hero %}
-  
+                    {% for i in hero %}
+
 
                     <!-- Card -->
                     <div class="card shadow-sm vehicle-card">
-                        <img src="{{i.image.url}}" class="card-img-top"
-                            alt="Car">
+                        <img src="{{i.image.url}}" class="card-img-top" alt="Car">
 
                         <div class="card-body">
                             <h5 class="fw-bold">{{i.title}}</h5>
@@ -113,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-{% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -246,6 +245,220 @@
         </div>
     </section>
     <!-- owner section end -->
+    <!-- platform feature start  -->
+    <section class="feature-section my-5 pb-5">
+        <div class="container">
+            <span class="section-subtitle">Platform features</span>
+            <h2 class="section-title mb-3">Built for renting, paying and staying updated.</h2>
+            <p class="section-desc mb-5">
+                The platform keeps the experience simple of both sides, from account verification and online payment
+                to rental reminders and reviews.
+            </p>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-4">
+                    <div class="category-card">
+                        <div class="icon"><i class="fa-solid fa-money-bill-1-wave"></i></div>
+                        <h5>Custom search filters</h5>
+                        <p>Refine results by type,seats,milage, price and availibility in streamlined flow.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="category-card">
+                        <div class="icon"><i class="fa-solid fa-money-bill-1-wave"></i></div>
+                        <h5>Secure online payment</h5>
+                        <p>Move from search to checkout with clear total,payment gateway support and booking
+                            confirmation.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="category-card">
+                        <div class="icon"><i class="fa-solid fa-money-bill-1-wave"></i></div>
+                        <h5>Smart notifications</h5>
+                        <p>Send reminders about rental durations, returns ,payment updates and booking activily without
+                            adding friction.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-7 ">
+
+                    <div class="review-card">
+                        <div class="section-subtitle mb-2">Member review</div>
+                        <div class="review">
+                            <div class="review-info d-flex">
+                                <img src="{% static 'images/logo.png' %}" alt="progile pic"
+                                    style="border-radius: 50%; height: 42px; width: 42px; margin-right: 5px;">
+                                <div class="review-profile ">
+                                    <h5 class="p-0 m-0">Aines Sama</h5>
+                                    <p class="p-0 m-0">Verified . 5 rents</p>
+                                </div>
+                            </div>
+                            <div class="review-desc mt-2">
+                                <h5>"Booking felt immediate. Paid online and pickedup the car the same day."</h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-5 ">
+
+                    <div class="review-card">
+                        <div class="section-subtitle mb-2">Trust at a glance</div>
+                        <h1>98%</h1>
+                        <p>of the booking are completed with one time payment confirmation and proactive rental
+                            notifications.</p>
+                        <a href="">
+                            <h5>See more reviews....</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- platform feature end -->
+    <!-- feature products section start -->
+    <section class="feature-product my-5 pb-5">
+        <div class="container">
+            <span class="section-subtitle">Featured product</span>
+            <h2 class="section-title mb-3">Popular vehicles renters book first.</h2>
+            <p class="section-desc mb-5">
+                Explore standout listings with instant booking, verified owners and clear day rates for <br>
+                short city rides, airport pickups and weekend trips.
+            </p>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-4">
+                    <div class="product-card">
+
+
+                        <div class="card-image">
+                            <img src="{% static 'images/supra.jpeg' %}" alt="Supra MK4">
+                        </div>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Supra MK-4</h5>
+                            <p class="card-subtitle">Sports car • Manual • Petrol</p>
+
+                            <div class="card-footer-custom">
+                                <span class="price">Rs. 20,000/day</span>
+                                <a href=""><button class="btn btn-primary btn-sm">Book Now</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="product-card">
+
+
+                        <div class="card-image">
+                            <img src="{% static 'images/supra.jpeg' %}" alt="Supra MK4">
+                        </div>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Supra MK-4</h5>
+                            <p class="card-subtitle">Sports car • Manual • Petrol</p>
+
+                            <div class="card-footer-custom">
+                                <span class="price">Rs. 20,000/day</span>
+                                <a href=""><button class="btn btn-primary btn-sm">Book Now</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="product-card">
+
+
+                        <div class="card-image">
+                            <img src="{% static 'images/supra.jpeg' %}" alt="Supra MK4">
+                        </div>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Supra MK-4</h5>
+                            <p class="card-subtitle">Sports car • Manual • Petrol</p>
+
+                            <div class="card-footer-custom">
+                                <span class="price">Rs. 20,000/day</span>
+                                <a href=""><button class="btn btn-primary btn-sm">Book Now</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature products section end -->
+    <section class="start ">
+        <div class="container">
+            <div class="row my-5">
+                <div class="col-md-4 col-lg-8 px-4">
+                    <h2 class="section-title">Start renting with a simple flow.</h2>
+                    <p class="section-desc ">
+                        Search vehicles, pay online and manage your trip from one clear experience
+                    </p>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="d-flex gap-3 mt-4">
+                        <a href=""><button class="btn btn-primary">Find a vehicle</button></a>
+                        <a href=""><button class="btn btn-light border">Create a account</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer start -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-lg-6">
+    <div class="footer-brand">
+
+        <!-- Logo -->
+        <a class="brand d-flex align-items-center gap-2" href="{% url 'home' %}">
+            <img src="{% static 'images/logo_round.png' %}" alt="RentalHub Logo">
+            <span><strong>Rental</strong>Hub</span>
+        </a>
+
+        <!-- Description -->
+        <p class="footer-desc">
+            A simple vehicle rental platform for discovering trusted cars and bikes,
+            managing bookings, and listing your own vehicle with confidence.
+        </p>
+
+    </div>
+</div>
+                <div class="col-md-4 col-lg-2 footer-col">
+                    <h5 class="footer-title">Platform</h5>
+                    <ul class="footer-list">
+                        <li><a href="#">Browse vehicles</a></li>
+                        <li><a href="#">Featured products</a></li>
+                        <li><a href="#">How it works</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-lg-2 footer-col">
+                    <h5 class="footer-title">Owner</h5>
+                    <ul class="footer-list">
+                        <li><a href="#">List your vehicle</a></li>
+                        <li><a href="#">Owner guide</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-lg-2 footer-col">
+                    <h5 class="footer-title">Support</h5>
+                    <ul class="footer-list">
+                        <li><a href="#">Help center</a></li>
+                        <li><a href="#">Payment alerts</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
 </body>
 
 </html>
