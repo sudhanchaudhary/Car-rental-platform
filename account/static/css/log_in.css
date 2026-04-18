@@ -1,0 +1,72 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* =========================
+   SOCIAL LOGIN
+========================= */
+
+/* Divider */
+.divider {
+    text-align: center;
+    position: relative;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--border-light);
+}
+
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+.divider span {
+    background: var(--white);
+    padding: 0 10px;
+}
+
+/* =========================
+   SOCIAL ICON BUTTONS
+========================= */
+
+/* Hover base */
+.social-icon:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+/* Brand colors on hover */
+.social-icon.google:hover {
+    color: #ea4335;
+    border-color: #ea4335;
+}
+
+.social-icon.facebook:hover {
+    color: #1877f2;
+    border-color: #1877f2;
+}
+
+/* Icon size */
+.social-icon {
+    font-size: 20px;
+}

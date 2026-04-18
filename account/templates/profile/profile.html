@@ -1,0 +1,104 @@
+{% extends "profile/dashboard.html" %}
+{% load static %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/profil.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+
+<div class="profile-wrapper">
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+
+        <!-- Profile Image -->
+        <div class="profile-image">
+            <img src="{% static 'images/logo_round.png' %}" alt="Profile Image">
+        </div>
+
+        <!-- User Info -->
+        <div class="profile-info">
+
+            <h2>Aines{{ request.user.username|title }}<span class="badge">Verified ✔</span></h2>
+            <p class="email">aines@gmail.com</p>
+
+            <!-- BASIC INFO -->
+            <!-- SINGLE INFO BOX -->
+            <div class="info-box single">
+
+                <div class="info-row">
+                    <span class="label">Account Type:</span>
+                    <span class="value">Renter</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Phone:</span>
+                    <span class="value">9823206642</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Gender:</span>
+                    <span class="value">
+                        <span class="badge">male</span>
+                    </span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Member Since:</span>
+                    <span class="value">2026.04.18{{ request.user.date_joined|date:"M Y" }}</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Address:</span>
+                    <span class="value">
+                      {{ request.user.profile.address|default:"Not added yet" }}
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- DOCUMENTS SECTION -->
+            <div class="document-section">
+
+                <h3>Documents</h3>
+
+                <div class="doc-grid">
+
+                    <!-- Citizenship -->
+                    <div class="doc-card">
+                        <h4>Citizenship Front</h4>
+                        <img src="{% static 'images/r1f.jpg' %}" alt="ID Front">
+                    </div>
+
+                    <div class="doc-card">
+                        <h4>Citizenship Back</h4>
+                        <img src="{% static 'images/r1.jpg' %}" alt="ID Back">
+                    </div>
+
+                    <!-- License -->
+                    <div class="doc-card">
+                        <h4>License Front</h4>
+                        <img src="{% static 'images/r1f.jpg' %}" alt="License Front">
+                    </div>
+
+                    <div class="doc-card">
+                        <h4>License Back</h4>
+                        <img src="{% static 'images/r1.jpg' %}" alt="License Back">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- EDIT BUTTON -->
+            <a href="{% url 'profile_update' %}" class="edit-btn">
+                Edit Profile
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock profile %}

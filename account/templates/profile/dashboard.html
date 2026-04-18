@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+| Dashboard
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dash.css' %}">
+{% block procss %}
+
+{% endblock procss %}
+{% endblock css %}
+
+
+{% block content %}
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h3 class="logo">Dashboard</h3>
+
+        <ul class="nav-links">
+            <li><a href="{% url 'profile' %}" class="{% if request.path == '/account/profile/' %}
+              active
+            {% endif %}">Profile</a></li>
+            <li><a href="{% url 'profile_update' %}" class="{% if request.path == '/account/profile_update/' %}
+              active
+            {% endif %}">Update Profile</a></li>
+            <li><a href="#">My Rentals</a></li>
+            <li><a href="#">List My Vehicle</a></li>
+            <li><a href="#">My Earnings</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+        {% block profile %}
+
+        {% endblock profile %}
+    </div>
+</div>
+{% endblock content %}

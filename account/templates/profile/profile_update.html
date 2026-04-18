@@ -1,0 +1,128 @@
+{% extends "profile/dashboard.html" %}
+{% load static %}
+
+{% block title %}
+| Profile update
+{% endblock title %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/profile_update.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+
+<section class="profile-page">
+
+    <h2 class="page-title text-center">Profile Update</h2>
+    <p class="subtitle text-center">Please fill in accurate information</p>
+
+    <form method="post" enctype="multipart/form-data" class="mx-auto">
+        {% csrf_token %}
+
+        <div class="avatar-upload mb-5">
+
+            <label class="avatar-preview" for="profile_image">
+                <i class="fa-solid fa-circle-user"></i>
+            </label>
+
+            <input type="file" id="profile_image" name="profile_image" accept="image/*">
+
+        </div>
+
+        <!-- NAME -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>First Name *</label>
+                <input type="text" name="fname" placeholder="Enter first name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name *</label>
+                <input type="text" name="lname" placeholder="Enter last name" required>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Phone *</label>
+                <input type="text" name="phone" placeholder="98XXXXXXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label>Address *</label>
+                <input type="text" name="address" placeholder="Your address" required>
+            </div>
+        </div>
+
+        <!-- GENDER -->
+        <div class="form-section">
+            <label>Gender *</label>
+
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="gender" value="Male" required>
+                    Male
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Other">
+                    Other
+                </label>
+            </div>
+        </div>
+
+        <!-- CITIZENSHIP -->
+        <div class="form-section">
+            <h5>Citizenship Details</h5>
+            <div class="id_input d-flex">
+                <input type="number" name="idnumber" placeholder="Citizenship Number" required>
+
+                <div class="image-upload d-flex">
+                    <div class="id_front mx-5">
+                        <label for="id_front">Citizenship front</label>
+                        <input type="file" name="id_front" required>
+                    </div>
+                    <div class="id_back ">
+                        <label for="id_back">Citizenship Back</label>
+                        <input type="file" name="id_back" required>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LICENSE -->
+        <div class="form-section">
+            <h5>License (Optional)</h5>
+            <div class="lic_input d-flex">
+                <input type="number" name="lnumber" placeholder="License Number">
+
+                <div class="image-upload d-flex">
+                    <div class="l_front mx-5">
+                        <label for="l-front">Licence front</label>
+                        <input type="file" name="l_front">
+                    </div>
+                    <div class="l_back">
+                        <label for="l_back">Licence back</label>
+                        <input type="file" name="l_back">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn">Update Profile</button>
+
+    </form>
+
+</section>
+
+{% endblock profile %}

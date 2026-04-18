@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 EXTERNAL_APP=[
     'main',
+    'account'
 ]
 INSTALLED_APPS.extend(EXTERNAL_APP)
 
