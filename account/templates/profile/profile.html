@@ -1,4 +1,4 @@
-{% extends "profile/dashboard.html" %}
+{% extends "dashboard.html" %}
 {% load static %}
 
 {% block procss %}
@@ -14,14 +14,27 @@
 
         <!-- Profile Image -->
         <div class="profile-image">
-            <img src="{% static 'images/logo_round.png' %}" alt="Profile Image">
+            {% if data and data.profilepic %}
+            <img src="{{ data.profilepic.url }}" alt="Profile Image">
+            {% else %}
+            <img src="{% static 'images/profile_avatar.png' %}" alt="Profile Image">
+            {% endif %}
         </div>
 
         <!-- User Info -->
         <div class="profile-info">
 
-            <h2>Aines{{ request.user.username|title }}<span class="badge">Verified ✔</span></h2>
-            <p class="email">aines@gmail.com</p>
+            <h2>
+                {{ data.fname|title }} {{ data.lname }}
+
+                {% if data.approved %}
+                <span class="badge bg-success">Verified ✔</span>
+                {% else %}
+                <span class="badge bg-warning text-dark">Not Verified</span>
+                {% endif %}
+            </h2>
+
+            <p class="email">{{ request.user.email }}</p>
 
             <!-- BASIC INFO -->
             <!-- SINGLE INFO BOX -->
@@ -29,30 +42,30 @@
 
                 <div class="info-row">
                     <span class="label">Account Type:</span>
-                    <span class="value">Renter</span>
+                    <span class="value">{{data.account_type}}</span>
                 </div>
 
                 <div class="info-row">
                     <span class="label">Phone:</span>
-                    <span class="value">9823206642</span>
+                    <span class="value">{{data.phone}}</span>
                 </div>
 
                 <div class="info-row">
                     <span class="label">Gender:</span>
                     <span class="value">
-                        <span class="badge">male</span>
+                        <span class="badge">{{data.gender}}</span>
                     </span>
                 </div>
 
                 <div class="info-row">
                     <span class="label">Member Since:</span>
-                    <span class="value">2026.04.18{{ request.user.date_joined|date:"M Y" }}</span>
+                    <span class="value">{{ data.created_at|date:"M Y" }}</span>
                 </div>
 
                 <div class="info-row">
                     <span class="label">Address:</span>
                     <span class="value">
-                      {{ request.user.profile.address|default:"Not added yet" }}
+                        {{ data.address|default:"Not added yet" }}
                     </span>
                 </div>
 
@@ -68,23 +81,34 @@
                     <!-- Citizenship -->
                     <div class="doc-card">
                         <h4>Citizenship Front</h4>
-                        <img src="{% static 'images/r1f.jpg' %}" alt="ID Front">
+                        <img src="{{data.citizenfront.url}}" alt="ID Front">
                     </div>
 
                     <div class="doc-card">
                         <h4>Citizenship Back</h4>
-                        <img src="{% static 'images/r1.jpg' %}" alt="ID Back">
+                        <img src="{{data.citizenback.url}}" alt="ID Back">
                     </div>
 
                     <!-- License -->
                     <div class="doc-card">
                         <h4>License Front</h4>
-                        <img src="{% static 'images/r1f.jpg' %}" alt="License Front">
+
+                        {% if data.licencefront %}
+                        <img src="{{ data.licencefront.url }}" alt="License Front">
+                        {% else %}
+                        <p>No image uploaded</p>
+                        {% endif %}
+
                     </div>
 
                     <div class="doc-card">
                         <h4>License Back</h4>
-                        <img src="{% static 'images/r1.jpg' %}" alt="License Back">
+
+                        {% if data.licenceback %}
+                        <img src="{{ data.licenceback.url }}" alt="License Front">
+                        {% else %}
+                        <p>No image uploaded</p>
+                        {% endif %}
                     </div>
 
                 </div>

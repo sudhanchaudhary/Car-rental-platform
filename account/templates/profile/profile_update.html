@@ -1,4 +1,4 @@
-{% extends "profile/dashboard.html" %}
+{% extends "dashboard.html" %}
 {% load static %}
 
 {% block title %}
@@ -16,16 +16,20 @@
     <h2 class="page-title text-center">Profile Update</h2>
     <p class="subtitle text-center">Please fill in accurate information</p>
 
-    <form method="post" enctype="multipart/form-data" class="mx-auto">
+    <form method="post" enctype="multipart/form-data" class="mx-auto" action="{% url 'profile_update' %}">
         {% csrf_token %}
 
         <div class="avatar-upload mb-5">
 
             <label class="avatar-preview" for="profile_image">
-                <i class="fa-solid fa-circle-user"></i>
+                {% if request.user.profile.profilepic %}
+                  <img src="{{request.user.profile.profilepic.url}}" alt="" style="height: 107px; width: 108px; border-radius: 50%; z-index: 1;">
+                  {% else %}
+                  <img src="{% static 'images/profile_avatar.png' %}" alt="" style="height: 107px; width: 108px; border-radius: 50%;">
+                {% endif %}
             </label>
 
-            <input type="file" id="profile_image" name="profile_image" accept="image/*">
+            <input type="file" id="profile_image" name="profile_pic" accept="image/*">
 
         </div>
 
@@ -33,12 +37,12 @@
         <div class="form-row">
             <div class="form-group">
                 <label>First Name *</label>
-                <input type="text" name="fname" placeholder="Enter first name" required>
+                <input type="text" name="fname" placeholder="Enter first name" value="{{request.user.profile.fname}}" required>
             </div>
 
             <div class="form-group">
                 <label>Last Name *</label>
-                <input type="text" name="lname" placeholder="Enter last name" required>
+                <input type="text" name="lname" placeholder="Enter last name" value="{{request.user.profile.lname}}" required>
             </div>
         </div>
 
@@ -46,51 +50,70 @@
         <div class="form-row">
             <div class="form-group">
                 <label>Phone *</label>
-                <input type="text" name="phone" placeholder="98XXXXXXXX" required>
+                <input type="text" name="phone" placeholder="98XXXXXXXX" value="{{request.user.profile.phone}}" required>
             </div>
 
             <div class="form-group">
                 <label>Address *</label>
-                <input type="text" name="address" placeholder="Your address" required>
+                <input type="text" name="address" placeholder="Your address" value="{{request.user.profile.address}}" required>
             </div>
         </div>
 
         <!-- GENDER -->
-        <div class="form-section">
-            <label>Gender *</label>
+        <div class="form-section d-flex gap-5">
+            <div class="gender me-5">
+                <label>Gender *</label>
 
-            <div class="radio-group">
-                <label>
-                    <input type="radio" name="gender" value="Male" required>
-                    Male
-                </label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="gender" value="Male" required>
+                        Male
+                    </label>
 
-                <label>
-                    <input type="radio" name="gender" value="Female">
-                    Female
-                </label>
+                    <label>
+                        <input type="radio" name="gender" value="Female">
+                        Female
+                    </label>
 
-                <label>
-                    <input type="radio" name="gender" value="Other">
-                    Other
-                </label>
+                    <label>
+                        <input type="radio" name="gender" value="Other">
+                        Other
+                    </label>
+                </div>
             </div>
+
+            <div class="account_type ms-5">
+                <label>Account type *</label>
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="actype" value="Male" required>
+                        Renter
+                    </label>
+
+                    <label>
+                        <input type="radio" name="actype" value="Female">
+                        Host
+                    </label>
+                </div>
+            </div>
+
         </div>
 
         <!-- CITIZENSHIP -->
         <div class="form-section">
             <h5>Citizenship Details</h5>
             <div class="id_input d-flex">
-                <input type="number" name="idnumber" placeholder="Citizenship Number" required>
+                <input type="number" name="idnumber" placeholder="Citizenship Number" value="{{request.user.profile.citizen}}" required>
 
                 <div class="image-upload d-flex">
                     <div class="id_front mx-5">
                         <label for="id_front">Citizenship front</label>
-                        <input type="file" name="id_front" required>
+                        <input type="file" name="id_front"  required>
                     </div>
                     <div class="id_back ">
                         <label for="id_back">Citizenship Back</label>
-                        <input type="file" name="id_back" required>
+                        <input type="file" name="id_back"  required>
                     </div>
 
                 </div>
@@ -102,7 +125,7 @@
         <div class="form-section">
             <h5>License (Optional)</h5>
             <div class="lic_input d-flex">
-                <input type="number" name="lnumber" placeholder="License Number">
+                <input type="number" name="lnumber" placeholder="License Number" value="{{request.user.profile.licence}}">
 
                 <div class="image-upload d-flex">
                     <div class="l_front mx-5">

@@ -62,6 +62,10 @@ ul{
     color: var(--text-dark);
 }
 
+.dropdown-toggle::after {
+    display: none !important;
+}
+
 /* =========================
    VEHICLE CARD
 ========================= */

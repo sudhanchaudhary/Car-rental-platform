@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+| Categories
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/category.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<section class="categories-section py-5">
+    <div class="container px-4">
+
+        <!-- HEADER -->
+        <div class="page-header mb-4">
+            <h2 class="text-center">Vehicle Categories</h2>
+            <p class="text-center">Find the perfect vehicle type for your trip</p>
+        </div>
+    </div>
+    <div class="full-bg pb-1">
+        <div class="container my-4 ">
+            <div class="row g-4 my-5">
+
+                <!-- LEFT SIDEBAR -->
+                <div class="col-md-3">
+
+                    <div class="sidebar">
+
+                        <h5 class="sidebar-title">Categories</h5>
+
+                        <div class="accordion" id="catAccordion">
+
+                            {% for i in category %}
+                            <div class="accordion-item">
+
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cat{{i.id}}">
+
+                                        <span>{{i.title}}</span>
+
+                                        <span class="badge-count">({{i.sub_count}})</span>
+
+                                    </button>
+                                </h2>
+
+                                <div id="cat{{i.id}}" class="accordion-collapse collapse">
+
+                                    <div class="accordion-body">
+
+                                        {% for j in i.subcategory_set.all %}
+                                        <a hx-get="?subcategory={{j.id}}" hx-push-url="true"
+                                            hx-target="#product_container" hx-swap="innerHTML" class="sub-link">
+
+                                            <span>{{j.title}}</span>
+                                            <small>({{j.product_count}})</small>
+
+                                        </a>
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT CONTENT -->
+                <div class="col-md-9">
+
+                    <!-- TOP CARD -->
+                    <div class="top-card">
+                        <div>
+                            <h5>Available Vehicles</h5>
+                            <p>Find the right ride for every journey — from budget bikes to premium cars</p>
+                        </div>
+                    </div>
+
+                    <!-- INFO -->
+                    <div class="info-box">
+                        <small>Showing results based on selected category</small>
+                    </div>
+
+                    <!-- PRODUCTS -->
+                    <div class="row g-3" id="product_container">
+                        {% include "main/product.html" %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

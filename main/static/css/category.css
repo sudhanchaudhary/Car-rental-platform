@@ -1,0 +1,191 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+}
+
+/* =======================
+   GLOBAL SECTION
+======================= */
+
+.categories-section {
+    background: #f7f8fc;
+    min-height: 100vh;
+}
+
+/* =======================
+   PAGE HEADER
+======================= */
+
+.page-header h2 {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #6c757d;
+}
+
+/* =======================
+   SIDEBAR
+======================= */
+
+.sidebar {
+    background: #fff;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    position: sticky;
+    top: 20px;
+}
+
+.sidebar-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Accordion */
+.accordion-item {
+    border: none;
+    margin-bottom: 10px;
+}
+
+.accordion-button {
+    background: #f9fafc;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #eef3ff;
+    color: #0d6efd;
+}
+
+/* Badge */
+.badge-count {
+    margin-left: auto;
+    background: #e9ecef;
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 12px;
+}
+
+/* Sub category links */
+.sub-link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #333;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.sub-link:hover {
+    background: #f1f4ff;
+    color: #0d6efd;
+}
+
+/* =======================
+   TOP CARD
+======================= */
+
+.top-card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.top-card h5 {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.top-card p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Tags */
+.tags span {
+    background: #f1f3f5;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+/* =======================
+   INFO BOX
+======================= */
+
+.info-box {
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    color: #6c757d;
+}
+
+/* =======================
+   VEHICLE CARD (PRODUCT)
+======================= */
+
+.full-bg {
+    background: #d4e2f3e7;
+    width: 100%;
+}
+
+.vehicle-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.vehicle-card h6 {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.vehicle-card .text-primary {
+    font-weight: 700;
+}
+
+/* Buttons */
+.vehicle-card .btn {
+    border-radius: 8px;
+    font-size: 13px;
+}
+
