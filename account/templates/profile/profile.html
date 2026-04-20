@@ -25,10 +25,10 @@
         <div class="profile-info">
 
             <h2>
-                {{ data.fname|title }} {{ data.lname }}
+                {{ data.fname|title }} {{ data.lname|title }}
 
                 {% if data.approved %}
-                <span class="badge bg-success">Verified ✔</span>
+                <span class="badge bg-primary text-light">Verified ✔</span>
                 {% else %}
                 <span class="badge bg-warning text-dark">Not Verified</span>
                 {% endif %}
@@ -42,7 +42,7 @@
 
                 <div class="info-row">
                     <span class="label">Account Type:</span>
-                    <span class="value">{{data.account_type}}</span>
+                    <span class="value">{{data.account_type|title}}</span>
                 </div>
 
                 <div class="info-row">

@@ -1,0 +1,204 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --secondary-color: #64748b;
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --background-secondary:#e8f0fae7;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+
+    --price-bg: #e0f2fe;
+    --price-text: #0369a1;
+}
+
+body {
+    background: var(--background-secondary);
+}
+
+.content {
+margin-top: 40px;
+margin-bottom: 40px;
+}
+/* FORM CARD */
+.form-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid var(--border-light);
+}
+
+/* TITLES */
+.section-title {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.section-text {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+/* FORM GRID */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* INPUTS */
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+}
+
+/* DOCUMENTS */
+.documents h5 {
+    margin-bottom: 10px;
+}
+
+/* TOGGLE SWITCH */
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    background: #ccc;
+    border-radius: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    background: white;
+    border-radius: 50%;
+    left: 3px;
+    bottom: 3px;
+    transition: 0.3s;
+}
+
+.toggle-switch input:checked + .slider {
+    background: var(--primary-color);
+}
+
+.toggle-switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+/* SIDE CARD */
+.listing-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+}
+
+.listing-card h4 {
+    margin-bottom: 15px;
+}
+
+.listing-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.listing-card li {
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+/* Availability */
+.availability-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Toggle */
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    background: #ccc;
+    border-radius: 50px;
+    top: 0; left: 0; right: 0; bottom: 0;
+    cursor: pointer;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    background: white;
+    border-radius: 50%;
+    left: 3px;
+    bottom: 3px;
+    transition: 0.3s;
+}
+
+.toggle-switch input:checked + .slider {
+    background: var(--primary-color);
+}
+
+.toggle-switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+/* Submit button */
+.submit-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    padding: 8px 40px;
+    border-radius: 10px;
+    background: var(--primary-color);
+    border: none;
+}
+
+.submit-btn:hover {
+    background: var(--primary-hover);
+}

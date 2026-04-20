@@ -51,8 +51,8 @@
                             href="{% url 'home' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {% if request.path == '/category/' %}active{% endif %}"
                             href="{% url 'category' %}">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.path == '/listyv/' %}active{% endif %}"
-                            href="#">List your vehicle</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/host_guide/' %}active{% endif %}"
+                            href="{% url 'host_guide' %}">List your vehicle</a></li>
                     <li class="nav-item"><a class="nav-link{% if request.path == '/review/' %}active{% endif %}"
                             href="#">Reviews</a></li>
                 </ul>
