@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.decorators import login_required
 
+from main.models import Product,ProductImage,Category,SubCategory
+
 from .models import Profile
 
 # Create your views here.
@@ -93,3 +95,61 @@ def profile(request):
     data=Profile.objects.get(user=request.user)
     print(request.FILES)
     return render(request,'profile/profile.html',{'data':data})
+
+@login_required(login_url='log_in')
+def listing(request):
+    profile = request.user.profile
+    if profile.approved and profile.account_type == "host":
+        
+        if request.method == "POST":
+            category=request.POST.get('category')
+            subcategory=request.POST.get('subcategory')
+            is_available=request.POST.get('available') == 'on'
+            cate_instance=Category.objects.get(title=category)
+            subcate_instance=SubCategory.objects.get(title=subcategory)
+            Product.objects.create(
+                owner=request.user,
+                plate=request.POST.get('plate_number'),
+                image=request.FILES.get('img'),
+                brand=request.POST.get('brand'),
+                model=request.POST.get('model'),
+                category=cate_instance,
+                subcategory=subcate_instance,
+                seats=request.POST.get('seat'),
+                milage=request.POST.get('milage'),
+                price_per_day=request.POST.get('price'),
+                make=request.POST.get('make'),
+                desc=request.POST.get('desc'),
+                is_available=is_available,
+                bimg_number=request.FILES.get('number_image'),
+                bimg_detail=request.FILES.get('detail_image'),
+                bimg_owner=request.FILES.get('owner_image'),
+                approved=False
+                )
+            return redirect('listing')
+        return render(request, 'profile/listing.html')
+    messages.error(request, "Access denied. Host account needed.")
+    return redirect('home')
+
+@login_required(login_url='log_in')
+def mylisting(request):
+    if request.user.profile.account_type == 'host':
+        data=Product.objects.filter(owner=request.user)
+        del_id=request.GET.get('del')
+        if del_id:
+            product=Product.objects.get(id=del_id)
+            product.delete()
+            return redirect('mylisting')
+        return render(request,'profile/mylisting.html',{'data':data})
+    else:
+        return redirect('profile')
+    
+@login_required(login_url='log_in')
+def myearning(request):
+    if request.user.profile.account_type == 'host':
+        return render(request, 'profile/myearning.html')
+    
+@login_required(login_url='log_in')
+def history(request):
+    # if request.user.profile.account_type == 'renter':
+    return render(request, 'profile/history.html')

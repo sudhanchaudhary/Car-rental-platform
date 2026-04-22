@@ -1,0 +1,54 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/history.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+<section class="history-section">
+    <div class="container">
+
+        <h2 class="page-title">Booking History</h2>
+
+        <div class="table-card">
+            <div class="table-responsive">
+
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Image</th>
+                            <th>Vehicle</th>
+                            <th>Booked For</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+
+                            <td>
+                                <img class="car-img" src="{% static 'images/supra.jpeg' %}" alt="car">
+                            </td>
+
+                            <td>
+                                <div class="vehicle-name">Toyota Supra</div>
+                                <small class="text-muted">Sports Car</small>
+                            </td>
+
+                            <td>
+                                <span class="badge-days">7 Days</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock profile %}

@@ -1,0 +1,189 @@
+/* =========================
+   COLOR PALETTE (YOUR TOKENS)
+========================= */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --secondary-color: #64748b;
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --background-secondary: #e8f0fae7;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+
+    --price-bg: #e0f2fe;
+    --price-text: #0369a1;
+}
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+body {
+    background: var(--background-main);
+}
+
+/* =========================
+   CARD CONTAINER
+========================= */
+.listing-card {
+    background: var(--background-secondary);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   TITLE
+========================= */
+.section-title {
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* =========================
+   TABLE
+========================= */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.custom-table thead th {
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.custom-table tbody tr {
+    background: var(--background-secondary);
+    border-radius: 12px;
+    transition: 0.25s ease;
+}
+
+.custom-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.custom-table td,
+.custom-table th {
+    border: none;
+    padding: 15px;
+    vertical-align: middle;
+    color: var(--text-dark);
+}
+
+/* =========================
+   IMAGE
+========================= */
+.product-img {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* =========================
+   PRICE TAG
+========================= */
+.price {
+    background: var(--price-bg);
+    color: var(--price-text);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-approved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-pending {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+/* =========================
+   TOGGLE SWITCH
+========================= */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 22px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--border-light);
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--white);
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+/* ACTIVE STATE */
+.switch input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* =========================
+   OPTIONAL BUTTON (future use)
+========================= */
+.btn-primary-custom {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-primary-custom:hover {
+    background: var(--primary-hover);
+}
+
+.fa-trash{
+    color: red;
+}

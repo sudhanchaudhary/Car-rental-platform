@@ -21,7 +21,7 @@ class SubCategory(models.Model):
         return self.title
     
 class Product(models.Model):
-    owner=models.ForeignKey(User,on_delete=models.CASCADE,default=1)
+    owner=models.ForeignKey(User,on_delete=models.CASCADE,default=1,related_name='owner')
     plate=models.CharField(max_length=100,default='1111')
     model=models.CharField(max_length=100)
     brand=models.CharField(max_length=100)
@@ -43,7 +43,7 @@ class Product(models.Model):
         return self.model
     
 class ProductImage(models.Model):
-    image=models.ImageField('Product_image')
+    image=models.ImageField(upload_to='Product_image',null=True,blank=True)
     product=models.ForeignKey(Product, on_delete=models.CASCADE,related_name='images')
     def __str__(self):
         return self.product.model

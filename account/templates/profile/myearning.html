@@ -1,0 +1,28 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/myearning.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+<div class="earnings-container px-5">
+
+    <h2 class="section-title text-center">My Earnings</h2>
+
+    <div class="earnings-grid">
+
+        <div class="earn-card">
+            <p>Total Earnings</p>
+            <h3>Rs. 100000 {{ total_earnings }}</h3>
+        </div>
+
+        <div class="earn-card">
+            <p>Total Bookings</p>
+            <h3>10 {{ total_bookings }}</h3>
+        </div>
+
+    </div>
+
+</div>
+{% endblock profile %}

@@ -1,0 +1,72 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/mylisting.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+<section class="content">
+    <div class="container">
+        <div class="listing-card">
+            <h1 class="section-title text-center">My Listings</h1>
+            {% if data %}
+            <div class="table-responsive">
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Price/day</th>
+                            <th>Status</th>
+                            <th>Availability</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- Example Static Row -->
+                        {% for i in data %}
+                        <tr>
+                            <th>{{forloop.counter}}</th>
+                            <td>
+                                <img class="product-img" src="{{i.image.url}}">
+                            </td>
+                            <td>{{i.brand}} {{i.model}}</td>
+                            <td><span class="price">Rs. {{i.price_per_day}}</span></td>
+                            <td>
+                                {% if i.approved %}
+                                <span class="status status-approved">Approved</span>
+                                {% else %}
+                                <span class="status status-pending">Pending</span>
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                {% if i.is_available %}
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                {% else %}
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                                {% endif %}
+
+                            </td>
+                            <td><a href="?del={{i.id}}" onclick="return confirm('Delete this item?')"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-danger ">No vehicle found</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock profile %}

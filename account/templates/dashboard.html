@@ -27,9 +27,18 @@
             <li><a href="{% url 'profile_update' %}" class="{% if request.path == '/account/profile_update/' %}
               active
             {% endif %}">Update Profile</a></li>
-            <li><a href="#">My Rentals</a></li>
-            <li><a href="#">List My Vehicle</a></li>
-            <li><a href="#">My Earnings</a></li>
+            {% if request.user.profile.account_type == 'renter' %}
+              <li><a href="#">Rental History</a></li>
+            {% endif %}
+            {% if request.user.profile.account_type == 'host' %}
+              <li><a href="{% url 'mylisting' %}" class="{% if request.path == '/account/mylisting/' %}
+              active
+            {% endif %}">My listings</a></li>
+            <li><a href="{% url 'myearning' %}" class="{% if request.path == '/account/myearning/' %}
+              active
+            {% endif %}">My Earnings</a></li>
+            {% endif %}
+            
         </ul>
     </aside>
 

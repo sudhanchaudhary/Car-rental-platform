@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/vehicle_detail.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="container product-page">
+
+    <div class="row product-wrapper">
+
+        <!-- LEFT SIDE -->
+        <div class="col-lg-8">
+
+            <h1 class="product-title">{{product.brand|title}} {{product.model|title}}</h1>
+
+            <p class="rating-text">
+                <i class="fa-solid fa-star text-warning"></i>
+                4 (10 reviews)
+            </p>
+
+            <!-- MAIN IMAGE -->
+            <div class="main-image">
+                <img id="mainImage" src="{{product.image.url}}" alt="">
+            </div>
+
+            <!-- THUMBNAILS -->
+            <div class="thumbnail-row">
+
+
+
+                <img class="thumb active" src="{{product.image.url}}" onclick="changeImage(this)">
+                {% for i in product.images.all %}
+                <img class="thumb" src="{{i.image.url}}" onclick="changeImage(this)">
+
+                {% endfor %}
+            </div>
+
+            <!-- OWNER -->
+            <div class="owner-card">
+                <img src="{{product.owner.profile.profilepic.url}}">
+                <div>
+                    <h4>{{product.owner.profile.fname|title}} {{product.owner.profile.lname|title}}</h4>
+                    <p>Verified host</p>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="info-box">
+                <h2>Description</h2>
+                <p>{{product.desc}}</p>
+            </div>
+
+            <!-- FEATURES -->
+            <div class="info-box">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <span>Seats: {{product.seats}}</span>
+                    <span>Mileage: {{product.milage}}km/l</span>
+                    <span>Type: {{product.subcategory}}</span>
+                    <span>Year: {{product.make}}</span>
+                </div>
+            </div>
+
+            <!-- REVIEWS -->
+            <div class="info-box">
+                <h2>Reviews</h2>
+
+                <div class="review-card small-review">
+                    <div class="review-user">
+                        <img src="{% static 'images/profile_avatar.png' %}">
+                        <div>
+                            <h5>Aines Sama</h5>
+                            <small>Verified user</small>
+                        </div>
+                    </div>
+                    <p class="review-text">Great car, smooth experience!</p>
+                </div>
+            </div>
+
+            <!-- REVIEW FORM -->
+            <div class="info-box">
+                <h2>Leave a Review</h2>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="stars" id="star-container">
+                        {% for i in "12345" %}
+                        <i class="fa fa-star star" data-value="{{ i }}"></i>
+                        {% endfor %}
+                    </div>
+
+                    <input type="hidden" name="rating" id="rating-value">
+
+                    <textarea name="feedback" rows="4" class="form-control mt-3"></textarea>
+
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE (STICKY PAYMENT) -->
+        <div class="col-lg-4">
+
+            <div class="payment-wrapper">
+
+                <div class="payment-card">
+                    <h3>Payment Calculation</h3>
+                    <div class="price-line">
+                        <span>Price/day</span>
+                        <b id="pricePerDay">{{product.price_per_day}}</b>
+                    </div>
+                    <hr>
+                    <div class="days-box">
+                        <label>Days</label>
+
+                        <div class="stepper">
+                            <button type="button" id="minus">-</button>
+
+                            <span id="daysValue">1</span>
+
+                            <button type="button" id="plus">+</button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="price-line">
+                        <span>Total (*days)</span>
+                        <b id="daytotal">0</b>
+                    </div>
+
+                    <div class="price-line">
+                        <span>VAT (13%)</span>
+                        <b id="vat">0</b>
+                    </div>
+
+                    <hr>
+
+                    <div class="price-total">
+                        <span>Grand Total</span>
+                        <b id="total">0</b>
+                    </div>
+
+                    <button class="pay-btn">Pay with eSewa</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script>
+    /* IMAGE SWITCH */
+    function changeImage(el) {
+        document.getElementById("mainImage").src = el.src;
+
+        document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+        el.classList.add("active");
+    }
+
+    /* STAR RATING */
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("rating-value");
+
+    stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+            let rating = star.dataset.value;
+            ratingInput.value = rating;
+
+            stars.forEach(s => s.classList.remove("selected"));
+
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add("selected");
+            }
+        });
+    });
+
+
+    let days = 1;
+
+    const daysValue = document.getElementById("daysValue");
+    const plus = document.getElementById("plus");
+    const minus = document.getElementById("minus");
+
+    const pricePerDay = {{ product.price_per_day }};
+
+    function updatePrice() {
+        let subtotal = days * pricePerDay;
+        let vat = subtotal * 0.13;
+        let total = subtotal + vat;
+
+        document.getElementById("daytotal").innerText = Math.round(subtotal);
+        document.getElementById("vat").innerText = Math.round(vat);
+        document.getElementById("total").innerText = Math.round(total);
+    }
+
+    /* INCREASE DAYS */
+    plus.addEventListener("click", () => {
+        days++;
+        daysValue.innerText = days;
+        updatePrice();
+    });
+
+    /* DECREASE DAYS */
+    minus.addEventListener("click", () => {
+        if (days > 1) {
+            days--;
+            daysValue.innerText = days;
+            updatePrice();
+        }
+    });
+
+    updatePrice();
+</script>
+
+{% endblock content %}

@@ -1,0 +1,112 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --secondary-color: #64748b;
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --background-secondary: #e8f0fae7;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+
+    --price-bg: #e0f2fe;
+    --price-text: #0369a1;
+}
+
+.history-section {
+    background-color: var(--background-secondary);
+    min-height: 50vh;
+    padding: 30px 0;
+}
+
+/* =========================
+   TITLE
+========================= */
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+/* =========================
+   CARD CONTAINER
+========================= */
+.table-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* =========================
+   TABLE DESIGN
+========================= */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.custom-table thead th {
+    border: none;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.custom-table tbody tr {
+    background: var(--background-secondary);
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.custom-table tbody tr:hover {
+    transform: translateY(-2px);
+    background: #eef4ff;
+}
+
+.custom-table td {
+    border: none;
+    padding: 15px;
+    vertical-align: middle;
+    color: var(--text-dark);
+}
+
+/* =========================
+   IMAGE
+========================= */
+.car-img {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* =========================
+   VEHICLE NAME
+========================= */
+.vehicle-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.text-muted {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* =========================
+   DAYS BADGE
+========================= */
+.badge-days {
+    background: var(--price-bg);
+    color: var(--price-text);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 13px;
+}
