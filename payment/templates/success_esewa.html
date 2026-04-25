@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        body {
+            background: #f4f6fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .success-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .success-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #22c55e;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .sub-text {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            text-align: left;
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .info-box h5 {
+            margin: 8px 0;
+            font-size: 15px;
+            color: #374151;
+        }
+
+        .contact-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #eff6ff;
+            text-align: left;
+        }
+
+        .contact-box h5 {
+            margin-bottom: 5px;
+        }
+
+        .home-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .home-btn:hover {
+            background: #1d4ed8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container success-wrapper">
+    <div class="row w-100">
+        <div class="col-md-5 mx-auto">
+
+            <div class="success-card">
+
+                <i class="fa-solid fa-circle-check success-icon"></i>
+
+                <div class="title">Payment Successful</div>
+                <div class="sub-text">Your transaction has been completed successfully</div>
+
+                <div class="info-box">
+                    <h5><b>Amount:</b> Rs. {{ amount }}</h5>
+                    <h5><b>Paid To:</b> RentalHub</h5>
+                </div>
+
+                <div class="contact-box">
+                    <h5><b>Pickup Details</b></h5>
+                    <p>Contact us to collect your vehicle:</p>
+                    <p> 9848484848</p>
+                    <p> rental@gmail.com</p>
+                </div>
+
+                <a href="{% url 'home' %}" class="home-btn">
+                    Go to Home
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

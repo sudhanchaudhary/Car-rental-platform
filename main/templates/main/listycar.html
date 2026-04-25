@@ -12,6 +12,7 @@
 {% block content %}
 
 <!-- HERO / LENDING -->
+{% if request.user.is_authenticated and request.user.profile and request.user.profile.account_type == "host" %}
 <section class="lending-section">
     <div class="container">
         <div class="row align-items-center">
@@ -24,7 +25,8 @@
                 </h2>
 
                 <p class="section-text">
-                    Turn depreciation into income. Share your vehicle when you're not using it and earn money to offset costs, pay loans, or fund your next adventure.
+                    Turn depreciation into income. Share your vehicle when you're not using it and earn money to offset
+                    costs, pay loans, or fund your next adventure.
                 </p>
 
                 <a href="{% url 'listing' %}">
@@ -151,5 +153,97 @@
 
     </div>
 </section>
+{% else %}
+<section class="renter-section">
+    <div class="container">
+        <div class="row">
+            <!-- GUIDE -->
+            <div class="guide-header">
+                <h2>Renter Guide</h2>
+                <p>Follow these simple steps to rent your vehicle</p>
+            </div>
+
+            <div class="guide-grid">
+
+                <div class="guide-card">
+                    <i class="fa-solid fa-user-check"></i>
+                    <h4>Create & Verify</h4>
+                    <p>Complete your profile before booking.</p>
+                </div>
+
+                <div class="guide-card">
+                    <i class="fa-solid fa-car"></i>
+                    <h4>Choose Vehicle</h4>
+                    <p>Select based on your needs and budget.</p>
+                </div>
+
+                <div class="guide-card">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <h4>Select Days</h4>
+                    <p>Pick how long you want the vehicle.</p>
+                </div>
+
+                <div class="guide-card">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <h4>Make Payment</h4>
+                    <p>Pay securely using eSewa.</p>
+                </div>
+
+                <div class="guide-card">
+                    <i class="fa-solid fa-key"></i>
+                    <h4>Pickup</h4>
+                    <p>Contact owner and collect vehicle.</p>
+                </div>
+
+                <div class="guide-card">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <h4>Return</h4>
+                    <p>Return before booking time ends.</p>
+                </div>
+
+            </div>
+
+            <!-- CONTACT + MAP -->
+            <div class="contact-map">
+
+                <!-- Contact -->
+                <div class="contact-box">
+                    <h3>Need Help?</h3>
+                    <p class="subtitle">We're here to assist you anytime</p>
+
+                    <div class="info">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+977 9848484848</span>
+                    </div>
+
+                    <div class="info">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>rentalhub@gmail.com</span>
+                    </div>
+
+                    <div class="info">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Kathmandu, Nepal</span>
+                    </div>
+
+                    <a href="{% url 'home' %}" class="btn-contact">Go Home</a>
+                </div>
+
+                <!-- Map -->
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps?q=Kathmandu,Nepal&output=embed" loading="lazy">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+{% endif %}
+
+
 
 {% endblock content %}

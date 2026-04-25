@@ -1,0 +1,152 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --secondary-color: #64748b;
+    --text-dark: #0f172a;
+    --text-light: #94a3b8;
+
+    --background-main: #f8fafc;
+    --background-secondary: #e8f0fae7;
+    --white: #ffffff;
+
+    --border-light: #e2e8f0;
+}
+
+/* Base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--background-main);
+}
+
+/* Center container */
+.password-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Card */
+.password-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+.password-card h2 {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Subtitle */
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 6px 0 20px 0;
+}
+
+/* Alert */
+.alert {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* INPUT GROUP (FIXED ALIGNMENT) */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+/* Label */
+.input-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Input wrapper */
+.input-box {
+    position: relative;
+    width: 100%;
+}
+
+/* Input field */
+.input-box input {
+    width: 100%;
+    height: 42px;
+    padding: 10px 40px 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* Focus */
+.input-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Eye icon */
+.toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: 0.2s ease;
+}
+
+.toggle:hover {
+    color: var(--primary-color);
+}
+
+/* Button */
+.password-card button {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-top: 5px;
+}
+
+.password-card button:hover {
+    background: var(--primary-hover);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .password-card {
+        padding: 20px;
+    }
+}

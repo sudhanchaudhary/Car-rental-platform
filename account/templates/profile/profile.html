@@ -81,12 +81,23 @@
                     <!-- Citizenship -->
                     <div class="doc-card">
                         <h4>Citizenship Front</h4>
-                        <img src="{{data.citizenfront.url}}" alt="ID Front">
+                        {% if data.citizenfront %}
+                          <img src="{{data.citizenfront.url}}" alt="ID Front">
+                          {% else %}
+                        <p>No image uploaded</p>
+                        {% endif %}
+                        
                     </div>
 
                     <div class="doc-card">
                         <h4>Citizenship Back</h4>
+                        {% if data.citizenback %}
                         <img src="{{data.citizenback.url}}" alt="ID Back">
+                          {% else %}
+                        <p>No image uploaded</p>
+                        {% endif %}
+                        
+                        
                     </div>
 
                     <!-- License -->

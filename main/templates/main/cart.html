@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="checkout-wrapper">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LEFT SIDE -->
+            <div class="col-lg-8">
+
+                <div class="product-card">
+
+                    <h2>{{ item.name }}</h2>
+
+                    <img src="{{ item.image }}" class="product-img">
+
+                    <p class="price">
+                        Price per day: <b>Rs. {{ item.price }}</b>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-4">
+
+                <div class="payment-box">
+
+                    <h3>Rental Summary</h3>
+
+                    <hr>
+
+                    <!-- DAYS CONTROL -->
+                    <div class="days-control">
+
+                        <button id="minus" class="btn-day">-</button>
+
+                        <span id="daysValue">{{ item.days }}</span>
+
+                        <button id="plus" class="btn-day">+</button>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- CALCULATIONS -->
+                    <p>Total:
+                        <b id="total">
+                            Rs. {{ item.price|floatformat:2 }}
+                        </b>
+                    </p>
+
+                    <p>VAT (13%):
+                        <b id="vat">Auto</b>
+                    </p>
+
+                    <hr>
+                    <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+                        <input type="hidden" id="amount" name="amount" value="{{amount}}" required>
+                        <input type="hidden" id="tax_amount" name="tax_amount" value="{{tax_amount}}" required>
+                        <input type="hidden" id="total_amount" name="total_amount" value="{{total_amount}}" required>
+                        <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="{{transaction_uuid}}" required>
+                        <input type="hidden" id="product_code" name="product_code" value="{{product_code}}" required>
+                        <input type="hidden" id="product_service_charge" name="product_service_charge" value="{{product_service_charge}}" required>
+                        <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="{{product_delivery_charge}}"
+                            required>
+                        <input type="hidden" id="success_url" name="success_url"
+                            value="{{success_url}}" required>
+                        <input type="hidden" id="failure_url" name="failure_url"
+                            value="{{failure_url}}" required>
+                        <input type="hidden" id="signed_field_names" name="signed_field_names"
+                            value="{{signed_field_names}}" required>
+                        <input type="hidden" id="signature" name="signature"
+                            value="{{signature}}" required>
+                        <input value="Pay with esewa" type="submit" style="background-color: rgb(14, 194, 14); color: aliceblue; border: none; border-radius: 10px; padding: 5px; width: 100%;">
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= JS ================= -->
+<script>
+
+    const updateDaysUrl = "{% url 'update_checkout_days' %}";
+
+    function updateDays(action) {
+
+        fetch(updateDaysUrl, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ action: action })
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                if (data.success) {
+
+                    // update days
+                    document.getElementById("daysValue").innerText = data.days;
+
+                    // update price dynamically (optional UI logic)
+                    let price = parseFloat("{{ item.price }}");
+                    let total = price * data.days;
+                    let vat = total * 0.13;
+
+                    document.getElementById("total").innerText = "Rs. " + total.toFixed(2);
+                    document.getElementById("vat").innerText = "Rs. " + vat.toFixed(2);
+                }
+
+            });
+
+    }
+
+    document.getElementById("plus").addEventListener("click", () => {
+        updateDays("plus");
+    });
+
+    document.getElementById("minus").addEventListener("click", () => {
+        updateDays("minus");
+    });
+
+</script>
+
+{% endblock content %}

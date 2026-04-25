@@ -1,0 +1,54 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/notification.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+
+<section class="notification-section">
+    <div class="container">
+
+        <div class="header">
+            <h2>Notifications</h2>
+            <p>Latest updates from your account</p>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table class="notification-table">
+                <thead>
+                    <tr>
+                        <th>Message</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if data %}
+                    {% for i in data %}
+                      <tr>
+                        <td>
+                            <div class="msg">
+                                <span class="dot"></span>
+                                {{i.title}}
+                            </div>
+                        </td>
+                        <td>{{i.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <div class="alert alert-danger text-center">Nothing to show here</div>
+                    {% endif %}
+                    
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock profile %}

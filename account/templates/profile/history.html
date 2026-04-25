@@ -20,29 +20,46 @@
                             <th>S.N</th>
                             <th>Image</th>
                             <th>Vehicle</th>
-                            <th>Booked For</th>
+                            <th>Booked For(days)</th>
+                            <th>Booked on</th>
+                            <th>Booked till</th>
                         </tr>
                     </thead>
 
                     <tbody>
+                        {% if data.exists %}
+                        {% for order in data %}
 
+                        {% for item in order.item.all %}
                         <tr>
-                            <td>1</td>
+                            <td>{{ forloop.counter }}</td>
 
                             <td>
-                                <img class="car-img" src="{% static 'images/supra.jpeg' %}" alt="car">
+                                <img src="{{ item.product.image.url }}" class="car-img">
                             </td>
 
                             <td>
-                                <div class="vehicle-name">Toyota Supra</div>
-                                <small class="text-muted">Sports Car</small>
+                                {{ item.product.brand }} {{ item.product.model }}
                             </td>
 
                             <td>
-                                <span class="badge-days">7 Days</span>
+                                {{ item.quantity }}
+                            </td>
+                            <td>
+                                {{ item.created_at }}
+                            </td>
+                            <td>
+                                {{ item.booked_till }}
                             </td>
                         </tr>
+                        {% endfor %}
 
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="4">No bookings found</td>
+                        </tr>
+                        {% endif %}
                     </tbody>
                 </table>
 

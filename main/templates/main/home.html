@@ -24,8 +24,8 @@
                     </p>
 
                     <div class="d-flex gap-3 mb-4">
-                        <button class="btn btn-primary px-4">Browse vehicles</button>
-                        <button class="btn btn-light border">How it works</button>
+                        <a href="{% url 'category' %}"><button class="btn btn-primary px-4">Browse vehicles</button></a>
+                        <a href="{% url 'host_guide' %}"><button class="btn btn-light border">How it works</button></a>
                     </div>
 
                     <div class="d-flex gap-5">
@@ -45,24 +45,8 @@
                 </div>
 
                 <!-- Right -->
-                <div class="col-lg-6">
-                    {% for i in hero %}
-
-
-                    <!-- Card -->
-                    <div class="card shadow-sm vehicle-card">
-                        <img src="{{i.image.url}}" class="card-img-top" alt="Car">
-
-                        <div class="card-body">
-                            <h5 class="fw-bold">{{i.title}}</h5>
-                            <p class="text-muted small">{{i.desc}}</p>
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="price">Rs. {{i.price}}/day</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                <div class="col-lg-6 image-col">
+                    <img src="{% static 'images/supra.jpeg' %}"  alt="">
                 </div>
             </div>
         </div>
@@ -135,7 +119,9 @@
 
                 <!-- Left Image Placeholder -->
                 <div class="col-lg-6">
-                    <div class="owner-image"></div>
+                    <div class="owner-image">
+                        <img src="{% static 'images/cash.jpg' %}" alt="">
+                    </div>
                 </div>
 
                 <!-- Right Content -->
@@ -184,8 +170,8 @@
 
                         <!-- Buttons -->
                         <div class="d-flex gap-3 mt-4">
-                            <button class="btn btn-primary">List your vehicle</button>
-                            <button class="btn btn-light border">See owner guide</button>
+                            <a href="{% if request.user.profile.account_type == 'host' %}{% url 'listing' %}{% endif %}"><button class="btn btn-primary">List your vehicle</button></a>
+                            <a href="{% url 'host_guide' %}"><button class="btn btn-light border">See owner guide</button></a>
                         </div>
 
                     </div>
@@ -300,16 +286,16 @@
 
 
                         <div class="card-image">
-                            <img src="{% static 'images/supra.jpeg' %}" alt="Supra MK4">
+                            <img src="{% static 'images/toyota-supra.png' %}" alt="Supra MK4">
                         </div>
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Supra MK-4</h5>
+                            <h5 class="card-title">Toyota Supra MK-4</h5>
                             <p class="card-subtitle">Sports car • Manual • Petrol</p>
 
                             <div class="card-footer-custom">
-                                <span class="price">Rs. 20,000/day</span>
+                                <span class="price">Rs. 25,000/day</span>
                                 <a href=""><button class="btn btn-primary btn-sm">Book Now</button></a>
                             </div>
                         </div>
@@ -321,16 +307,16 @@
 
 
                         <div class="card-image">
-                            <img src="{% static 'images/supra.jpeg' %}" alt="Supra MK4">
+                            <img src="{% static 'images/r1.jpg' %}" alt="Supra MK4">
                         </div>
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Supra MK-4</h5>
-                            <p class="card-subtitle">Sports car • Manual • Petrol</p>
+                            <h5 class="card-title">Yamaha R1</h5>
+                            <p class="card-subtitle">Bike • Manual • Petrol</p>
 
                             <div class="card-footer-custom">
-                                <span class="price">Rs. 20,000/day</span>
+                                <span class="price">Rs. 15,000/day</span>
                                 <a href=""><button class="btn btn-primary btn-sm">Book Now</button></a>
                             </div>
                         </div>
@@ -352,8 +338,11 @@
                 </div>
                 <div class="col-md-4 col-lg-4">
                     <div class="d-flex gap-3 mt-4">
-                        <a href=""><button class="btn btn-primary">Find a vehicle</button></a>
-                        <a href=""><button class="btn btn-light border">Create a account</button></a>
+                        <a href="{% url 'category' %}"><button class="btn btn-primary">Find a vehicle</button></a>
+                        {% if not request.user.is_authenticated %}
+                          <a href="{% url 'log_in' %}"><button class="btn btn-light border">Create a account</button></a>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>

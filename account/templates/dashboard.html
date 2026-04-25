@@ -28,7 +28,12 @@
               active
             {% endif %}">Update Profile</a></li>
             {% if request.user.profile.account_type == 'renter' %}
-              <li><a href="#">Rental History</a></li>
+              <li><a href="{% url 'history' %}" class="{% if request.path == '/account/history/' %}
+              active
+            {% endif %}">Rental History</a></li>
+            <li><a href="{% url 'notification' %}" class="{% if request.path == '/account/notification/' %}
+              active
+            {% endif %}">Notification</a></li>
             {% endif %}
             {% if request.user.profile.account_type == 'host' %}
               <li><a href="{% url 'mylisting' %}" class="{% if request.path == '/account/mylisting/' %}

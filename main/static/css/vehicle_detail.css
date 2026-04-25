@@ -15,7 +15,9 @@
     --price-bg: #e0f2fe;
     --price-text: #0369a1;
 }
-
+body{
+    background-color: var(--background-secondary);
+}
 .product-page {
     padding: 30px 0;
 }

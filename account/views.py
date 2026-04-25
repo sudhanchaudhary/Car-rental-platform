@@ -4,10 +4,12 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 from main.models import Product,ProductImage,Category,SubCategory
+from payment.models import Order,OrderItem
 
-from .models import Profile
+from .models import Profile,Notification
 
 # Create your views here.
 def sign_up(request):
@@ -27,7 +29,8 @@ def sign_up(request):
                 return redirect('sign_up')
             try:
                 validate_password(password)
-                User.objects.create_user(first_name=f_name,last_name=l_name,username=username,email=email,password=password,is_active=False)
+                User.objects.create_user(first_name=f_name,last_name=l_name,username=username,email=email,password=password)
+                
                 messages.success(request,'Please complete your profile to start booking.')
                 return redirect('log_in')
             except ValueError as a:
@@ -46,6 +49,7 @@ def log_in(request):
         password = request.POST.get('password')
         remember = request.POST.get('remember')
         user = authenticate(request, username=username, password=password)
+        print("USER:", user)
         if user is not None:
             login(request, user)
             if remember:
@@ -62,6 +66,33 @@ def log_in(request):
 def log_out(request):
     logout(request)
     return redirect('log_in')
+
+@login_required(login_url='log_in')
+def change_password(request):
+    user = request.user
+
+    if request.method == 'POST':
+        opassword = request.POST.get('old_password')
+        npassword = request.POST.get('new_password')
+        cnpassword = request.POST.get('c_new_password')
+
+        if not user.check_password(opassword):
+            messages.error(request, 'Old password is incorrect')
+            return redirect('pchange')
+
+        if npassword != cnpassword:
+            messages.error(request, 'New password and Confirm password do not match')
+            return redirect('pchange')
+
+        user.set_password(npassword)
+        user.save()
+        Notification.objects.create(user=request.user,title="Password changed successfully")
+
+        update_session_auth_hash(request, user)
+
+        messages.success(request, 'Password changed successfully')
+        return redirect('profile')
+    return render(request,'auth/change_password.html')
 
 @login_required(login_url='log_in')
 def profile_update(request):
@@ -84,7 +115,7 @@ def profile_update(request):
         profile.approved = False
 
         profile.save()
-
+        Notification.objects.create(user=request.user,title="Profile updated successfully")
         messages.success(request, 'Profile updated successfully')
         return redirect('profile')
 
@@ -92,8 +123,7 @@ def profile_update(request):
 
 @login_required(login_url='log_in')
 def profile(request):
-    data=Profile.objects.get(user=request.user)
-    print(request.FILES)
+    data, created = Profile.objects.get_or_create(user=request.user)
     return render(request,'profile/profile.html',{'data':data})
 
 @login_required(login_url='log_in')
@@ -126,6 +156,7 @@ def listing(request):
                 bimg_owner=request.FILES.get('owner_image'),
                 approved=False
                 )
+            Notification.objects.create(user=request.user,title="Vehicle added successfully")
             return redirect('listing')
         return render(request, 'profile/listing.html')
     messages.error(request, "Access denied. Host account needed.")
@@ -139,6 +170,7 @@ def mylisting(request):
         if del_id:
             product=Product.objects.get(id=del_id)
             product.delete()
+            Notification.objects.create(user=request.user,title="Product deleted successfully")
             return redirect('mylisting')
         return render(request,'profile/mylisting.html',{'data':data})
     else:
@@ -151,5 +183,11 @@ def myearning(request):
     
 @login_required(login_url='log_in')
 def history(request):
-    # if request.user.profile.account_type == 'renter':
-    return render(request, 'profile/history.html')
+    if request.user.profile.account_type == 'renter':
+        data = Order.objects.filter(user=request.user).prefetch_related('item__product')
+        return render(request, 'profile/history.html',{'data':data})
+    
+@login_required(login_url='log_in')
+def notification(request):
+    data=Notification.objects.filter(user=request.user)[::-1]
+    return render(request,'profile/notification.html',{'data':data})

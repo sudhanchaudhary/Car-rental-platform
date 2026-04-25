@@ -51,10 +51,10 @@
                             href="{% url 'home' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {% if request.path == '/category/' %}active{% endif %}"
                             href="{% url 'category' %}">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.path == '/host_guide/' %}active{% endif %}"
-                            href="{% url 'host_guide' %}">List your vehicle</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/guide/' %}active{% endif %}"
+                            href="{% url 'host_guide' %}">Guide</a></li>
                     <li class="nav-item"><a class="nav-link{% if request.path == '/review/' %}active{% endif %}"
-                            href="#">Reviews</a></li>
+                            href="{% url 'review' %}">Reviews</a></li>
                 </ul>
 
                 <div class="d-flex gap-2 align-items-center">
@@ -75,7 +75,7 @@
                                 <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">Change Password</a>
+                                <a class="dropdown-item" href="{% url 'pchange' %}">Change Password</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -128,16 +128,18 @@
                 <div class="col-md-4 col-lg-2 footer-col">
                     <h5 class="footer-title">Platform</h5>
                     <ul class="footer-list">
-                        <li><a href="#">Browse vehicles</a></li>
+                        <li><a href="{% url 'category' %}">Browse vehicles</a></li>
                         <li><a href="#">Featured products</a></li>
-                        <li><a href="#">How it works</a></li>
+                        <li><a href="{% url 'host_guide' %}">How it works</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-lg-2 footer-col">
                     <h5 class="footer-title">Owner</h5>
                     <ul class="footer-list">
-                        <li><a href="#">List your vehicle</a></li>
-                        <li><a href="#">Owner guide</a></li>
+                        <li><a href="{% if request.user.profile.account_type == 'host' %}
+                          {% url 'listing' %}
+                        {% endif %}">List your vehicle</a></li>
+                        <li><a href="{% url 'host_guide' %}">Owner guide</a></li>
                         <li><a href="#">Reviews</a></li>
                     </ul>
                 </div>

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+| Review
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<section class="review-section">
+<div class="container">
+    <div class="row">
+         <!-- HEADER -->
+    <div class="review-header">
+        <h2>Customer Reviews</h2>
+        <p>See what our users say about RentalHub</p>
+    </div>
+
+    <!-- REVIEW LIST -->
+    <div class="review-list">
+
+        <!-- Review 1 -->
+        <div class="review-card">
+            <div class="review-top">
+                <h4>Rahul Sharma</h4>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <p class="review-text">Very smooth experience. Booking was easy and the vehicle was in great condition.</p>
+            <span class="review-date">April 20, 2026</span>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card">
+            <div class="review-top">
+                <h4>Sita Thapa</h4>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+            <p class="review-text">Excellent service! The owner was very helpful and the process was seamless.</p>
+            <span class="review-date">April 18, 2026</span>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+            <div class="review-top">
+                <h4>Arjun Karki</h4>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <p class="review-text">Good platform but the pickup location could be better organized.</p>
+            <span class="review-date">April 15, 2026</span>
+        </div>
+
+    </div>
+
+    <!-- REVIEW FORM -->
+    <div class="review-form-box">
+        <h3>Leave a Review</h3>
+
+        <form>
+
+            <!-- Rating -->
+            <div class="rating-input">
+                <label>Rating:</label>
+                <div class="stars-input">
+                    <input type="radio" name="rating" id="star5"><label for="star5">★</label>
+                    <input type="radio" name="rating" id="star4"><label for="star4">★</label>
+                    <input type="radio" name="rating" id="star3"><label for="star3">★</label>
+                    <input type="radio" name="rating" id="star2"><label for="star2">★</label>
+                    <input type="radio" name="rating" id="star1"><label for="star1">★</label>
+                </div>
+            </div>
+
+            <!-- Comment -->
+            <div class="input-group">
+                <label>Comment</label>
+                <textarea rows="4" placeholder="Write your experience..."></textarea>
+            </div>
+
+            <button type="submit">Submit Review</button>
+
+        </form>
+    </div>
+    </div>
+</div>
+</section>
+
+{% endblock content %}

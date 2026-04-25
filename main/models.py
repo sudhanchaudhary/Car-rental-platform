@@ -41,6 +41,12 @@ class Product(models.Model):
     approved=models.BooleanField(default=False)
     def __str__(self):
         return self.model
+    @property
+    def name(self):
+        return f"{self.brand} {self.model}"
+    @property
+    def price(self):
+        return self.price_per_day
     
 class ProductImage(models.Model):
     image=models.ImageField(upload_to='Product_image',null=True,blank=True)
