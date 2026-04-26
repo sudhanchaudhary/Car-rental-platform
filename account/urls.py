@@ -13,5 +13,6 @@ urlpatterns = [
     path('myearning/',views.myearning,name='myearning'),
     path('history/',views.history,name='history'),
     path('notification/',views.notification,name='notification'),
+    path('statistics/',views.stats,name='stats'),
     
 ]

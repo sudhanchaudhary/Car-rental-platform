@@ -53,7 +53,7 @@
                             href="{% url 'category' %}">Categories</a></li>
                     <li class="nav-item"><a class="nav-link {% if request.path == '/guide/' %}active{% endif %}"
                             href="{% url 'host_guide' %}">Guide</a></li>
-                    <li class="nav-item"><a class="nav-link{% if request.path == '/review/' %}active{% endif %}"
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/review/' %}active{% endif %}"
                             href="{% url 'review' %}">Reviews</a></li>
                 </ul>
 

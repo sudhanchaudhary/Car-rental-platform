@@ -7,102 +7,117 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/review.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock css %}
 
 {% block content %}
 
 <section class="review-section">
-<div class="container">
-    <div class="row">
-         <!-- HEADER -->
-    <div class="review-header">
-        <h2>Customer Reviews</h2>
-        <p>See what our users say about RentalHub</p>
-    </div>
+    <div class="container">
 
-    <!-- REVIEW LIST -->
-    <div class="review-list">
-
-        <!-- Review 1 -->
-        <div class="review-card">
-            <div class="review-top">
-                <h4>Rahul Sharma</h4>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-            </div>
-            <p class="review-text">Very smooth experience. Booking was easy and the vehicle was in great condition.</p>
-            <span class="review-date">April 20, 2026</span>
+        <!-- HEADER -->
+        <div class="review-header text-center">
+            <h2>Customer Reviews</h2>
+            <p>See what our users say about RentalHub</p>
         </div>
 
-        <!-- Review 2 -->
-        <div class="review-card">
-            <div class="review-top">
-                <h4>Sita Thapa</h4>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+        <div class="row g-4 mt-4">
+
+            <!-- LEFT: REVIEWS -->
+            <div class="col-lg-7">
+
+                <div class="info-box">
+                    <h3 class="mb-4">All Reviews</h3>
+
+                    {% if review %}
+                    {% for i in review %}
+
+                    <div class="review-card">
+
+                        <div class="review-user">
+                            <img src="{{i.user.profile.profilepic.url}}" alt="user">
+                            <div>
+                                <h5>{{i.user.profile.fname|title}} {{i.user.profile.lname|title}}</h5>
+                                <small>Verified user</small>
+                            </div>
+                        </div>
+
+                        <div class="review-stars">
+                            {% for x in "12345" %}
+                            {% if forloop.counter <= i.rating %} <i class="fa-solid fa-star"></i>
+                                {% else %}
+                                <i class="fa-regular fa-star"></i>
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+
+                        <p class="review-text">{{i.feedback}}</p>
+
+                    </div>
+
+                    {% endfor %}
+                    {% else %}
+                    <div class="alert alert-danger">No reviews yet!!</div>
+                    {% endif %}
+                    <a href="?all=true">
+                        <div class="text-center mt-4">See all...</div>
+                    </a>
                 </div>
+
             </div>
-            <p class="review-text">Excellent service! The owner was very helpful and the process was seamless.</p>
-            <span class="review-date">April 18, 2026</span>
+
+            <!-- RIGHT: FORM -->
+            <div class="col-lg-5">
+
+                <div class="info-box form-box">
+                    <h3>Leave a Review</h3>
+
+                    {% if not existing %}
+                    <form method="POST" action="{% url 'review' %}">
+                        {% csrf_token %}
+
+                        <!-- STARS -->
+                        <div class="stars" id="star-container">
+                            {% for i in "12345" %}
+                            <i class="fa fa-star star" data-value="{{ i }}"></i>
+                            {% endfor %}
+                        </div>
+
+                        <input type="hidden" name="rating" id="rating-value">
+
+                        <!-- TEXTAREA -->
+                        <textarea name="feedback" rows="4" placeholder="Share your experience..."></textarea>
+
+                        <button type="submit" class="submit-btn">Submit Review</button>
+                    </form>
+                    {% else %}
+                    <div class="alert alert-danger">You already reviewed this product!!</div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
         </div>
-
-        <!-- Review 3 -->
-        <div class="review-card">
-            <div class="review-top">
-                <h4>Arjun Karki</h4>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-            </div>
-            <p class="review-text">Good platform but the pickup location could be better organized.</p>
-            <span class="review-date">April 15, 2026</span>
-        </div>
-
     </div>
-
-    <!-- REVIEW FORM -->
-    <div class="review-form-box">
-        <h3>Leave a Review</h3>
-
-        <form>
-
-            <!-- Rating -->
-            <div class="rating-input">
-                <label>Rating:</label>
-                <div class="stars-input">
-                    <input type="radio" name="rating" id="star5"><label for="star5">★</label>
-                    <input type="radio" name="rating" id="star4"><label for="star4">★</label>
-                    <input type="radio" name="rating" id="star3"><label for="star3">★</label>
-                    <input type="radio" name="rating" id="star2"><label for="star2">★</label>
-                    <input type="radio" name="rating" id="star1"><label for="star1">★</label>
-                </div>
-            </div>
-
-            <!-- Comment -->
-            <div class="input-group">
-                <label>Comment</label>
-                <textarea rows="4" placeholder="Write your experience..."></textarea>
-            </div>
-
-            <button type="submit">Submit Review</button>
-
-        </form>
-    </div>
-    </div>
-</div>
 </section>
+
+<script>
+    const stars = document.querySelectorAll(".star");
+    const ratingInput = document.getElementById("rating-value");
+
+    stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+            let rating = star.dataset.value;
+            ratingInput.value = rating;
+
+            stars.forEach(s => s.classList.remove("selected"));
+
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add("selected");
+            }
+        });
+    });
+</script>
 
 {% endblock content %}

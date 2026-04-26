@@ -1,0 +1,169 @@
+{% extends "dashboard.html" %}
+{% load static %}
+
+{% block procss %}
+<link rel="stylesheet" href="{% static 'css/stats.css' %}">
+{% endblock procss %}
+
+{% block profile %}
+
+<section class="stats">
+    <div class="container">
+
+        <!-- STATS CARDS -->
+        <div class="row g-4 mb-4">
+
+            <div class="col-lg-4">
+                <div class="stat-card">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <h5>Total Income</h5>
+                    {% if total %}
+                      <p>Rs. {{total}}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="stat-card">
+                    <i class="fa-solid fa-car"></i>
+                    <h5>Total Bookings</h5>
+                    {% if v_total %}
+                      <p>{{v_total}}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="stat-card">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <h5>Total Days</h5>
+                    {% if d_total %}
+                      <p>{{d_total}}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TRANSACTIONS -->
+        <div class="table-box mb-5">
+            <h3 class="mb-3">Transactions</h3>
+
+            <div class="table-responsive">
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>User</th>
+                            <th>Transaction Code</th>
+                            <th>UUID</th>
+                            <th>Product</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if transaction %}
+                          
+                        
+                        {% for i in transaction %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{i.user.first_name|title}} {{i.user.last_name|title}}</td>
+                            <td>{{i.transaction_code}}</td>
+                            <td>{{i.transaction_uuid}}</td>
+                            <td>{{i.product_code}}</td>
+                            <td><span class="badge-success">{{i.status}}</span></td>
+                            <td>{{i.total_amount}}</td>
+                            <td>{{i.created_at}}</td>
+                        </tr>
+                           {% endfor %}
+                           {% else %}
+                           <div class="alert alert-danger">No items found</div>
+                           {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="?t_all=true"><div class="text-center">See all ...</div></a>
+        </div>
+
+        <!-- APPROVAL SECTION -->
+        <div class="row g-4">
+
+            <!-- PROFILE -->
+            <div class="col-lg-6">
+                <div class="table-box">
+                    <h3 class="mb-3">Profile Approval</h3>
+
+                    <table class="table custom-table">
+                        <thead>
+                            <tr>
+                                <th>S.N.</th>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if profile %}
+                              
+                            {% for i in profile %}
+                              
+                           
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.fname|title}} {{i.lname|title}}</td>
+                                <td>{{i.citizen}}</td>
+                                <td><span class="badge-pending">Pending</span></td>
+                            </tr>
+                             {% endfor %}
+                             {% else %}
+                           <tr><td colspan="4" rowspan="4"><div class="alert alert-success text-center w-100">All profile approved</div></td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <a href="?p_all=true"><div class="text-center">See all</div></a>
+                </div>
+            </div>
+
+            <!-- VEHICLE -->
+            <div class="col-lg-6">
+                <div class="table-box">
+                    <h3 class="mb-3">Vehicle Approval</h3>
+
+                    <table class="table custom-table">
+                        <thead>
+                            <tr>
+                                <th>S.N.</th>
+                                <th>Name</th>
+                                <th>Plate</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if vehicle %}
+                              
+                          
+                            {% for i in vehicle %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.name}}</td>
+                                <td>{{i.plate}}</td>
+                                <td><span class="badge-pending">Pending</span></td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                          <tr><td colspan="4" rowspan="4"><div class="alert alert-success text-center">All vehicles approved</div></td></tr>
+                              {% endif %}
+                        </tbody>
+                    </table>
+                    <a href="?v_all=true"><div class="text-center">See all ...</div></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock profile %}

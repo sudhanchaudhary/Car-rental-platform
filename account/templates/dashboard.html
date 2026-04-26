@@ -23,27 +23,34 @@
         <ul class="nav-links">
             <li><a href="{% url 'profile' %}" class="{% if request.path == '/account/profile/' %}
               active
-            {% endif %}">Profile</a></li>
+            {% endif %}"><i class="fa-solid fa-user-tag"></i> Profile</a></li>
             <li><a href="{% url 'profile_update' %}" class="{% if request.path == '/account/profile_update/' %}
               active
-            {% endif %}">Update Profile</a></li>
+            {% endif %}"><i class="fa-solid fa-user-pen"></i> Update Profile</a></li>
             {% if request.user.profile.account_type == 'renter' %}
               <li><a href="{% url 'history' %}" class="{% if request.path == '/account/history/' %}
               active
-            {% endif %}">Rental History</a></li>
+            {% endif %}"><i class="fa-solid fa-clock-rotate-left"></i> Rental History</a></li>
             <li><a href="{% url 'notification' %}" class="{% if request.path == '/account/notification/' %}
               active
-            {% endif %}">Notification</a></li>
+            {% endif %}"><i class="fa-solid fa-bell"></i> Notification</a></li>
             {% endif %}
             {% if request.user.profile.account_type == 'host' %}
               <li><a href="{% url 'mylisting' %}" class="{% if request.path == '/account/mylisting/' %}
               active
-            {% endif %}">My listings</a></li>
+            {% endif %}"><i class="fa-solid fa-list-ul"></i> My listings</a></li>
             <li><a href="{% url 'myearning' %}" class="{% if request.path == '/account/myearning/' %}
               active
-            {% endif %}">My Earnings</a></li>
+            {% endif %}"><i class="fa-solid fa-hand-holding-dollar"></i> My Earnings</a></li>
+             <li><a href="{% url 'notification' %}" class="{% if request.path == '/account/notification/' %}
+              active
+            {% endif %}"><i class="fa-solid fa-bell"></i> Notification</a></li>
             {% endif %}
-            
+            {% if request.user.is_superuser %}
+              <li><a href="{% url 'stats' %}" class="{% if request.path == '/account/statistics/' %}
+              active
+            {% endif %}"><i class="fa-solid fa-chart-simple"></i> Statistics</a></li>
+            {% endif %}
         </ul>
     </aside>
 

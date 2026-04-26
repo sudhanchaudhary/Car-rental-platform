@@ -14,7 +14,7 @@ class Transaction(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
 
 class Order(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='trans')
     transaction_code=models.CharField(max_length=200)
     product_code=models.CharField(max_length=200)
     status=models.CharField(max_length=200)
@@ -22,7 +22,7 @@ class Order(models.Model):
     
 class OrderItem(models.Model):
     order=models.ForeignKey(Order, on_delete=models.CASCADE,related_name='item')
-    product=models.ForeignKey(Product, on_delete=models.CASCADE)
+    product=models.ForeignKey(Product, on_delete=models.CASCADE,related_name='orderitem')
     price=models.CharField(max_length=20)
     quantity=models.PositiveIntegerField()
     created_at=models.DateTimeField(auto_now_add=True,null=True,blank=True)

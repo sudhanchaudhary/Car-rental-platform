@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
+from django.db.models import Sum, F, ExpressionWrapper, DecimalField
 
 from main.models import Product,ProductImage,Category,SubCategory
-from payment.models import Order,OrderItem
-
+from payment.models import Order,OrderItem,Transaction
 from .models import Profile,Notification
 
 # Create your views here.
@@ -179,7 +179,14 @@ def mylisting(request):
 @login_required(login_url='log_in')
 def myearning(request):
     if request.user.profile.account_type == 'host':
-        return render(request, 'profile/myearning.html')
+        total_earning = OrderItem.objects.filter(
+        product__owner=request.user).aggregate(total=Sum(ExpressionWrapper(F('price') * F('quantity'),output_field=DecimalField())))['total'] or 0
+        booking_days=OrderItem.objects.filter(product__owner=request.user).aggregate(days=Sum('quantity'))['days'] or 0
+        context={
+            'my_earning':total_earning,
+            'days':booking_days
+        }
+        return render(request, 'profile/myearning.html',context)
     
 @login_required(login_url='log_in')
 def history(request):
@@ -191,3 +198,38 @@ def history(request):
 def notification(request):
     data=Notification.objects.filter(user=request.user)[::-1]
     return render(request,'profile/notification.html',{'data':data})
+
+@login_required(login_url='log_in')
+def stats(request):
+    if request.user.is_superuser:
+        total = Transaction.objects.aggregate(total_amount=Sum('total_amount'))['total_amount']
+        v_total=OrderItem.objects.aggregate(v_total=Sum('product'))['v_total']
+        d_total=OrderItem.objects.aggregate(d_total=Sum('quantity'))['d_total']
+        t_all=request.GET.get('t_all')
+        p_all=request.GET.get('p_all')
+        v_all=request.GET.get('v_all')
+        if t_all:
+            transaction=Transaction.objects.all()[::-1]
+        else:
+            transaction=Transaction.objects.all()[:5][::-1]
+        if p_all:
+            profile=Profile.objects.filter(approved=False)
+        else:
+            profile=Profile.objects.filter(approved=False)[:5]
+        if v_all:
+            vehicle=Product.objects.filter(approved=False)
+        else:
+            vehicle=Product.objects.filter(approved=False)[:5]
+            
+        print(transaction)
+        context={
+            'transaction':transaction,
+            'profile':profile,
+            'vehicle':vehicle,
+            'total':total,
+            'v_total':v_total,
+            'd_total':d_total,
+        }
+        return render(request,'profile/stats.html',context)
+    else:
+        return redirect('profile')

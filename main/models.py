@@ -63,4 +63,10 @@ class Review(models.Model):
     def __str__(self):
         return self.user.username
     
-    
+class SiteReview(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    rating=models.PositiveSmallIntegerField()
+    feedback=models.TextField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.user.username

@@ -9,8 +9,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Avg,Count
 from cart.cart import Cart
+from django.db.models import Avg
 
-from .models import HeroProduct,Product,Category,SubCategory,Review
+from .models import HeroProduct,Product,Category,SubCategory,Review,SiteReview
+from account.models import Notification
 
 # Create your views here.
 def home(request):
@@ -37,13 +39,26 @@ def category(request):
     return render(request,'main/category.html',context)
 
 def review(request):
-    return render(request,'main/review.html')
+    see_all=request.GET.get('all')
+    if see_all:
+        review=SiteReview.objects.all()
+    else:
+        review=SiteReview.objects.all()[:2]
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            SiteReview.objects.create(
+                user=request.user,
+                rating=request.POST.get('rating'),
+                feedback=request.POST.get('feedback')
+            )
+            Notification.objects.create(user=request.user,title='Feedback submitted successfully')
+            return redirect('review')
+        
+    return render(request,'main/review.html',{'review':review})
 
 def host_guide(request):
     return render(request,'main/listycar.html')
 
-from django.db.models import Avg
-from django.shortcuts import get_object_or_404, redirect, render
 
 @login_required(login_url='log_in')
 def vehicle_detail(request, id):
@@ -71,6 +86,7 @@ def vehicle_detail(request, id):
                 rating=request.POST.get('rating'),
                 feedback=request.POST.get('feedback')
             )
+            Notification.objects.create(user=request.user,title=f'Reviewed the product {product.name}.')
             return redirect('vehicle_detail', id=product.id)
         
         context = {
@@ -183,3 +199,4 @@ def checkout(request):
     }
     data['signature']=generate_signature(data, secret_key)
     return render(request, 'main/cart.html', data)
+
