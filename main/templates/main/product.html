@@ -1,5 +1,5 @@
 {% if product %}
-{% for i in product %}
+{% for i in data %}
 <div class="col-md-6 col-lg-4">
 
     <div class="vehicle-card shadow-sm rounded-4 overflow-hidden bg-white">
@@ -21,9 +21,9 @@
 
             <div class="d-flex justify-content-between align-items-center mt-3">
 
-                <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                <a href="{% url 'vehicle_detail' i.id %}" class="btn btn-sm btn-outline-primary">View</a>
 
-                <a href="{% url 'vehicle_detail' i.id %}">
+                <a href="{% url 'add_to_checkout' i.id %}">
                     <button class="btn btn-sm btn-primary px-3">
                         Book Now
                     </button>

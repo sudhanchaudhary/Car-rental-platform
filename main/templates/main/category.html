@@ -92,7 +92,68 @@
                     <div class="row g-3" id="product_container">
                         {% include "main/product.html" %}
                     </div>
+                    <nav aria-label="Page navigation" class="mt-5">
+                        <ul class="pagination justify-content-center">
 
+                            <!-- Previous -->
+                            {% if data.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="?page={{ data.previous_page_number }}#product_container">Previous</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                            {% endif %}
+
+                            <!-- First Page -->
+                            <li class="page-item {% if data.number == 1 %}active{% endif %}">
+                                <a class="page-link" href="?page=1#product_container">1</a>
+                            </li>
+
+                            <!-- Left dots -->
+                            {% if data.number > 3 %}
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            {% endif %}
+
+                            <!-- Middle Pages -->
+                            {% for i in data.paginator.page_range %}
+                            {% if i != 1 and i != data.paginator.num_pages %}
+                            {% if i >= data.number|add:'-1' and i <= data.number|add:'1' %} <li
+                                class="page-item {% if i == data.number %}active{% endif %}">
+                                <a class="page-link" href="?page={{ i }}#product_container">{{ i }}</a>
+                                </li>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+
+                                <!-- Right dots -->
+                                {% if data.number < data.paginator.num_pages|add:'-2' %} <li class="page-item disabled">
+                                    <span class="page-link">...</span></li>
+                                    {% endif %}
+
+                                    <!-- Last Page -->
+                                    {% if data.paginator.num_pages > 1 %}
+                                    <li
+                                        class="page-item {% if data.number == data.paginator.num_pages %}active{% endif %}">
+                                        <a class="page-link"
+                                            href="?page={{ data.paginator.num_pages }}#product_container">
+                                            {{ data.paginator.num_pages }}
+                                        </a>
+                                    </li>
+                                    {% endif %}
+
+                                    <!-- Next -->
+                                    {% if data.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            href="?page={{ data.next_page_number }}#product_container">Next</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                    {% endif %}
+
+                        </ul>
+                    </nav>
                 </div>
 
             </div>

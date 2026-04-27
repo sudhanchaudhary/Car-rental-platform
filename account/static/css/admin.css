@@ -1,0 +1,21 @@
+.login-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-logo img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.card{
+    border: 1px solid rgb(150, 150, 252);
+    border-radius: 15px;
+}
+
+.card-body{
+    border: 1px solid rgb(150, 150, 252);
+    border-radius: 15px;
+}

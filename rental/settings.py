@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,3 +134,28 @@ STATICFILES_DIRS=[
     ]
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
+
+# django jazzmin setting
+JAZZMIN_SETTINGS = {
+ "welcome_sign": "Welcome to the RentalHub ",
+ "site_icon": 'images/logo/favicon.ico',
+ "login_logo": 'images/logo.png',
+ "site_logo": "images/logo.png",    
+ 'custom_css': 'css/admin.css',
+    "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added)
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "main"},
+        {"app": "account"},
+        {"app": "payment"},
+    ],
+}

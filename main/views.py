@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.db.models import Avg,Count
 from cart.cart import Cart
 from django.db.models import Avg
+from django.core.paginator import Paginator
 
 from .models import HeroProduct,Product,Category,SubCategory,Review,SiteReview
 from account.models import Notification
@@ -30,9 +31,13 @@ def category(request):
         product=Product.objects.filter(subcategory=sub_id)
     else:
         product=Product.objects.filter(approved=True)
+    paginator=Paginator(product,3)
+    page=request.GET.get('page')
+    data=paginator.get_page(page)
     context={
         'category':category,
-        'product':product
+        'product':product,
+        'data':data
     }
     if request.headers.get("HX-request"):
         return render(request,'main/product.html',context)
