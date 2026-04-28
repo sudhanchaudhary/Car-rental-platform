@@ -11,6 +11,8 @@ from django.db.models import Avg,Count
 from cart.cart import Cart
 from django.db.models import Avg
 from django.core.paginator import Paginator
+import json
+from django.http import JsonResponse
 
 from .models import HeroProduct,Product,Category,SubCategory,Review,SiteReview
 from account.models import Notification
@@ -130,9 +132,6 @@ def add_to_checkout(request, id):
     request.session.modified = True
 
     return redirect("checkout")
-
-import json
-from django.http import JsonResponse
 
 @login_required(login_url="log_in")
 def update_checkout_days(request):
