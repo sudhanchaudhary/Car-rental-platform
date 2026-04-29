@@ -1,0 +1,11 @@
+<h1 style="color:  #2563eb;">Password reset link</h1>
+<p>Click the link below to reset your password</p>
+<a href="{{protocol}}://{{domain}}{% url 'password_reset_confirm' uidb64=uid token=token %}">
+    <button style="border-radius: 20px; 
+          background-color: #2563eb;
+           color: rgb(236, 239, 245); 
+           width: 100px;
+            height: 40px;
+              font-size: 18px;
+               font-weight: 400;">click me</button>
+</a>

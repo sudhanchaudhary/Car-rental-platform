@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Change</title>
+
+    <link rel="icon" href="{% static 'images/logo/favicon.ico' %}">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <!-- alertify CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0ecff, #f8fbff);
+        }
+
+        .form-box {
+            padding: 35px 30px;
+            border-radius: 16px;
+        }
+
+        .form-title {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        label {
+            font-weight: 500;
+            color: #374151;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            padding: 12px;
+            transition: 0.25s;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            outline: none;
+        }
+
+        .login-btn {
+            background: #2563eb;
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #1e4ed8;
+        }
+
+        .input-group-custom {
+            position: relative;
+        }
+
+        .input-group-custom input {
+            padding-right: 45px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #9ca3af;
+        }
+
+        .toggle-password:hover {
+            color: #2563eb;
+        }
+
+        .errorlist {
+            color: #ef4444;
+            font-size: 13px;
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="row justify-content-center w-100">
+
+        <!-- col-4 layout -->
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="shadow-lg bg-white form-box">
+
+                <h3 class="text-center mb-3 form-title">Change Password</h3>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {% for fm in form %}
+                        {{ fm.label_tag }}
+
+                        <div class="input-group-custom">
+                            {{ fm }}
+
+                            {% if fm.field.widget.input_type == "password" %}
+                            <span class="toggle-password">
+                                <i class="fa-solid fa-eye"></i>
+                            </span>
+                            {% endif %}
+                        </div>
+
+                        <div class="errorlist">{{ fm.errors|striptags }}</div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn login-btn w-100 mt-3">
+                        Change my password
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- alertify -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+<script>
+/* PASSWORD TOGGLE */
+document.querySelectorAll('.toggle-password').forEach(toggle => {
+    toggle.addEventListener('click', function () {
+        const input = this.previousElementSibling;
+
+        if (input.type === "password") {
+            input.type = "text";
+            this.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+        } else {
+            input.type = "password";
+            this.innerHTML = '<i class="fa-solid fa-eye"></i>';
+        }
+    });
+});
+</script>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script>
+    alertify.set('notifier', 'position', 'bottom-right');
+    alertify.success('{{message}}');
+</script>
+{% else %}
+<script>
+    alertify.set('notifier', 'position', 'bottom-right');
+    alertify.error('{{message}}');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</body>
+</html>

@@ -135,6 +135,14 @@ STATICFILES_DIRS=[
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
+# email setup
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sawuriya007@gmail.com'
+EMAIL_HOST_PASSWORD = 'eddr uoor pkoq jaln'
+
 # django jazzmin setting
 JAZZMIN_SETTINGS = {
  "welcome_sign": "Welcome to the RentalHub ",
