@@ -167,3 +167,15 @@ JAZZMIN_SETTINGS = {
         {"app": "payment"},
     ],
 }
+
+# o-auth setup
+LOGIN_URL="home"
+LOGIN_REDIRECT_URL ="home"
+LOGOUT_URL="logout"
+LOGOUT_REDIRECT_URL ="log_in"
+AUTHENTICATION_BACKENDS = [
+'social_core.backends.google.GoogleOAuth2',
+'django.contrib.auth.backends.ModelBackend',
+'social_core.backends.facebook.FacebookOAuth2',
+'django.contrib.auth.backends.ModelBackend',
+]
