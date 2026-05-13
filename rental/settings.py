@@ -141,7 +141,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIN_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # django jazzmin setting
 JAZZMIN_SETTINGS = {
@@ -169,18 +169,18 @@ JAZZMIN_SETTINGS = {
 }
 
 # o-auth setup
-LOGIN_URL="home"
-LOGIN_REDIRECT_URL ="home"
-LOGOUT_URL="logout"
-LOGOUT_REDIRECT_URL ="log_in"
-AUTHENTICATION_BACKENDS = [
-'social_core.backends.google.GoogleOAuth2',
-'django.contrib.auth.backends.ModelBackend',
-'social_core.backends.facebook.FacebookOAuth2',
-'django.contrib.auth.backends.ModelBackend',
-]
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
-SOCIAL_AUTH_FACEBOOK_KEY=config('SOCIAL_AUTH_FACEBOOK_KEY')
-SOCIAL_AUTH_FACEBOOK_SECRET=config('SOCIAL_AUTH_FACEBOOK_SECRET')
+# LOGIN_URL="home"
+# LOGIN_REDIRECT_URL ="home"
+# LOGOUT_URL="logout"
+# LOGOUT_REDIRECT_URL ="log_in"
+# AUTHENTICATION_BACKENDS = [
+# 'social_core.backends.google.GoogleOAuth2',
+# 'django.contrib.auth.backends.ModelBackend',
+# 'social_core.backends.facebook.FacebookOAuth2',
+# 'django.contrib.auth.backends.ModelBackend',
+# ]
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+# SOCIAL_AUTH_FACEBOOK_KEY=config('SOCIAL_AUTH_FACEBOOK_KEY')
+# SOCIAL_AUTH_FACEBOOK_SECRET=config('SOCIAL_AUTH_FACEBOOK_SECRET')
