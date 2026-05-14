@@ -43,9 +43,13 @@ INSTALLED_APPS = [
 ]
 EXTERNAL_APP=[
     'main',
-    'account',
+    'accounts',
     'cart',
-    'payment'
+    'payment',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'social_django'
 ]
 INSTALLED_APPS.extend(EXTERNAL_APP)
 
@@ -57,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'rental.urls'
@@ -169,18 +175,18 @@ JAZZMIN_SETTINGS = {
 }
 
 # o-auth setup
-# LOGIN_URL="home"
-# LOGIN_REDIRECT_URL ="home"
-# LOGOUT_URL="logout"
-# LOGOUT_REDIRECT_URL ="log_in"
-# AUTHENTICATION_BACKENDS = [
-# 'social_core.backends.google.GoogleOAuth2',
-# 'django.contrib.auth.backends.ModelBackend',
-# 'social_core.backends.facebook.FacebookOAuth2',
-# 'django.contrib.auth.backends.ModelBackend',
-# ]
-# SOCIAL_AUTH_URL_NAMESPACE = 'social'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
-# SOCIAL_AUTH_FACEBOOK_KEY=config('SOCIAL_AUTH_FACEBOOK_KEY')
-# SOCIAL_AUTH_FACEBOOK_SECRET=config('SOCIAL_AUTH_FACEBOOK_SECRET')
+LOGIN_URL="home"
+LOGIN_REDIRECT_URL ="home"
+LOGOUT_URL="logout"
+LOGOUT_REDIRECT_URL ="log_in"
+AUTHENTICATION_BACKENDS = [
+'social_core.backends.google.GoogleOAuth2',
+'django.contrib.auth.backends.ModelBackend',
+'social_core.backends.facebook.FacebookOAuth2',
+'django.contrib.auth.backends.ModelBackend',
+]
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_FACEBOOK_KEY=config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET=config('SOCIAL_AUTH_FACEBOOK_SECRET')

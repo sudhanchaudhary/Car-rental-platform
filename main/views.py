@@ -15,7 +15,7 @@ import json
 from django.http import JsonResponse
 
 from .models import HeroProduct,Product,Category,SubCategory,Review,SiteReview
-from account.models import Notification
+from accounts.models import Notification
 
 # Create your views here.
 def home(request):

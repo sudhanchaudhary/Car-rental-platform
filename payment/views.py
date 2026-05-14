@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 from django.utils import timezone
-from account.models import Notification
+from accounts.models import Notification
 from decouple import config
 
 # Create your views here.

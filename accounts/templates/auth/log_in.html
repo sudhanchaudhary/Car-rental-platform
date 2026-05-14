@@ -93,11 +93,11 @@
                                 <!-- Social Login -->
                                 <div class="social-login text-center gap-4 my-3">
 
-                                    <a href="" class="social-icon google">
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}" class="social-icon google me-2">
                                         <i class="fa-brands fa-google"></i>
                                     </a>
 
-                                    <a href="" class="social-icon facebook">
+                                    <a href="{% url 'social:begin' 'facebook' %}" class="social-icon facebook ms-2">
                                         <i class="fa-brands fa-facebook-f"></i>
                                     </a>
 

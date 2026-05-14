@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import HeroProduct,Category,SubCategory,Product,ProductImage,Review
-from account.models import Notification
+from accounts.models import Notification
 # Register your models here.
 admin.site.register(HeroProduct)
 admin.site.register(Category)
