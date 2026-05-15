@@ -72,4 +72,9 @@ Users receive notifications for:
 
 ---
 
+## Screenshots
+<img src="https://github.com/sudhanchaudhary/Car-rental-platform/blob/main/static/ss/stats.jpg" width="400"/>|<img src="https://github.com/sudhanchaudhary/Car-rental-platform/blob/main/static/ss/profile.jpg" width="400"/>
+<img src="https://github.com/sudhanchaudhary/Car-rental-platform/blob/main/static/ss/mtlist.jpg" width="400"/>|<img src="https://github.com/sudhanchaudhary/Car-rental-platform/blob/main/static/ss/notification.jpg" width="400"/>
+<img src="https://github.com/sudhanchaudhary/Car-rental-platform/blob/main/static/ss/login.jpg" width="400"/>|<img src="https://github.com/sudhanchaudhary/Car-rental-platform/blob/main/static/ss/landing.jpg" width="400"/>
+
 
